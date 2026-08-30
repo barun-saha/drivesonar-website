@@ -67,6 +67,21 @@
     body { font-family: 'Inter', sans-serif; }
     .font-mono { font-family: 'JetBrains Mono', monospace; }
     .glow { box-shadow: 0 0 50px -10px rgba(59, 130, 246, 0.2); }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-fade-in-up {
+      animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
   </style>
 
   <!-- Theme Initialization Script -->
@@ -76,6 +91,25 @@
     } else {
       document.documentElement.classList.add('dark');
     }
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // Reveal the element
+            entry.target.classList.remove("opacity-0", "translate-y-8");
+            entry.target.classList.add("opacity-100", "translate-y-0");
+            // Stop observing once animated
+            obs.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.15 // Triggers when 15% of the card is visible
+      });
+
+      document.querySelectorAll(".scroll-reveal").forEach(el => observer.observe(el));
+    });
   </script>
 </head>
 <body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 antialiased selection:bg-blue-500 selection:text-white transition-colors duration-200">
@@ -135,46 +169,53 @@
   <main>
     <!-- Hero Section -->
     <section class="relative pt-16 pb-16 md:pt-24 md:pb-20 px-6 text-center overflow-hidden">
-      <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-blue-500/10 dark:bg-blue-600/15 blur-[120px] rounded-full pointer-events-none"></div>
+      <!-- Soft Breathing Backdrop Glow -->
+      <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-blue-500/10 dark:bg-blue-600/15 blur-[120px] rounded-full pointer-events-none animate-pulse duration-10000"></div>
 
       <div class="max-w-4xl mx-auto relative z-10">
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs text-blue-600 dark:text-blue-400 font-semibold uppercase tracking-wider mb-8">
-          <span>⚡ The Fast, Light, User-Mode Open Source Disk Analyzer</span>
+        <!-- Badge -->
+        <div class="animate-fade-in-up inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs text-blue-600 dark:text-blue-400 font-semibold uppercase tracking-wider mb-8 transition-transform hover:scale-105 duration-300">
+          <span>⚡ Blazing Fast, Unbelievably Light, User-Mode</span>
         </div>
 
-        <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.15] mb-6">
-          Insights on your disk usage with <span class="bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 bg-clip-text text-transparent">clarity and speed</span>
+        <!-- Main Heading -->
+        <h1 class="animate-fade-in-up [animation-delay:200ms] text-4xl sm:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.15] mb-6">
+          Find where your space went with <span class="bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 bg-clip-text text-transparent">clarity and speed</span>
         </h1>
 
-        <p class="text-lg sm:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed mb-10 font-normal">
-          A fast, lightest approach to disk usage analysis. Scan millions of items quickly <em>without</em> administrator rights, minimal memory overhead, and multidimensional age analysis.
+        <!-- Subtitle -->
+        <p class="animate-fade-in-up [animation-delay:400ms] text-lg sm:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed mb-10 font-normal">
+          A fast, lightweight approach to disk usage analysis. Scan millions of items quickly <em>without</em> administrator rights, minimal memory overhead, and multidimensional age analysis.
         </p>
 
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-          <a href="https://github.com/barun-saha/drive-sonar/releases" target="_blank" rel="noopener" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-500 text-white font-semibold text-base px-8 py-3.5 rounded-xl shadow-lg shadow-blue-600/30 transition-all duration-200">
+        <!-- Call to Actions -->
+        <div class="animate-fade-in-up [animation-delay:500ms] flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+          <a href="https://github.com/barun-saha/drive-sonar/releases" target="_blank" rel="noopener" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-500 text-white font-semibold text-base px-8 py-3.5 rounded-xl shadow-lg shadow-blue-600/30 hover:shadow-blue-500/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200">
             Download Latest Release
           </a>
-          <a href="#comparison" class="w-full sm:w-auto bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 font-medium text-base px-8 py-3.5 rounded-xl transition-all duration-200">
+          <a href="#comparison" class="w-full sm:w-auto bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 font-medium text-base px-8 py-3.5 rounded-xl hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200">
             View Performance Benchmarks
           </a>
         </div>
       </div>
 
-      <img
-        src="/media/screenshot.png"
-        alt="Drive Sonar application screenshot"
-        class="w-full h-auto rounded-xl border border-slate-800"
-        width="1200"
-        height="750"
-        loading="lazy"
-      />
+      <!-- Screenshot Preview -->
+      <div class="animate-fade-in-up [animation-delay:650ms] max-w-6xl mx-auto">
+        <img
+          src="/media/screenshot.png"
+          alt="Drive Sonar application screenshot"
+          class="w-full h-auto rounded-xl border border-slate-800 shadow-2xl shadow-slate-950/20 dark:shadow-blue-950/30 transition-all duration-500 hover:border-slate-700"
+          width="1200"
+          height="750"
+          loading="lazy"
+        />
 
       <!-- App Visual Mockup -->
       <div class="max-w-5xl mx-auto mt-2 relative">
         <div class="rounded-2xl border border-slate-300 dark:border-slate-800 bg-slate-900 text-slate-100 p-2 sm:p-3 shadow-2xl glow text-left">
 
           <!-- Title Bar -->
-          <div class="flex items-center justify-between px-3 py-2 border-b border-slate-800 text-xs font-semibold text-slate-300 mb-3">
+          <div class="flex items-center justify-between px-3 py-2 border-b border-slate-800 text-sm font-semibold text-slate-300 mb-3">
             <div class="flex items-center gap-2">
               <span class="text-blue-400">⚡</span>
               <span>Drive Sonar — insights on your disk usage</span>
@@ -188,15 +229,15 @@
 
             <!-- Path Input Bar -->
             <div class="flex flex-col sm:flex-row gap-2 items-stretch">
-              <div class="flex-1 bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-xs font-mono text-slate-200 flex items-center justify-between">
-                <span>C:\Users\john</span>
+              <div class="flex-1 bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm font-mono text-slate-200 flex items-center justify-between">
+                <span>C:\Users\barun</span>
                 <span class="text-slate-500 text-sm">📁</span>
               </div>
               <div class="flex gap-2">
-                <button class="bg-blue-600 text-white text-xs font-medium px-4 py-2 rounded-lg flex items-center gap-1.5 shadow">
+                <button class="bg-blue-600 text-white text-sm font-medium px-4 py-2 rounded-lg flex items-center gap-1.5 shadow">
                   🔍 <span>Run Scan</span>
                 </button>
-                <button class="bg-slate-800/50 text-slate-500 text-xs font-medium px-3 py-2 rounded-lg border border-slate-800 cursor-not-allowed">
+                <button class="bg-slate-800/50 text-slate-500 text-sm font-medium px-3 py-2 rounded-lg border border-slate-800 cursor-not-allowed">
                   ⊗ Cancel Scan
                 </button>
               </div>
@@ -215,7 +256,7 @@
               <!-- Left Panel: Breadcrumb & Directory List -->
               <div class="lg:col-span-6 bg-slate-900/80 border border-slate-800 rounded-xl p-3 space-y-3">
                 <div class="text-[11px] font-mono text-slate-400 pb-2 border-b border-slate-800 flex items-center gap-1">
-                  <span>C:</span> <span>›</span> <span>Users</span> <span>›</span> <span class="text-slate-200 font-semibold">john</span>
+                  <span>C:</span> <span>›</span> <span>Users</span> <span>›</span> <span class="text-slate-200 font-semibold">barun</span>
                 </div>
 
                 <div class="space-y-2.5 font-sans text-xs">
@@ -328,22 +369,22 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 p-8 rounded-2xl">
+        <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 p-8 rounded-2xl">
           <div class="w-12 h-12 bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800/50 rounded-xl flex items-center justify-center text-blue-600 dark:text-blue-400 text-xl mb-6">🔒</div>
           <h3 class="text-xl font-semibold text-slate-900 dark:text-white mb-3">User-Mode Execution</h3>
-          <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Runs completely without administrator elevation or specialized driver requirements while safely reading user directories.</p>
+          <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Runs completely without administrator elevation or specialized driver requirements while safely reading user directories.</p>
         </div>
 
-        <div class="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 p-8 rounded-2xl">
+        <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out delay-150 bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 p-8 rounded-2xl">
           <div class="w-12 h-12 bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800/50 rounded-xl flex items-center justify-center text-blue-600 dark:text-blue-400 text-xl mb-6">⚡</div>
           <h3 class="text-xl font-semibold text-slate-900 dark:text-white mb-3">Minimal Memory Overhead</h3>
-          <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Built with Rust memory optimizations like string boxing, using ~108 MB RAM when processing over 1.2M files.</p>
+          <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Built with Rust memory optimizations like string boxing, using ~108 MB RAM when processing over 1.2M files.</p>
         </div>
 
-        <div class="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 p-8 rounded-2xl">
+        <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out delay-300 bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 p-8 rounded-2xl">
           <div class="w-12 h-12 bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800/50 rounded-xl flex items-center justify-center text-blue-600 dark:text-blue-400 text-xl mb-6">📈</div>
           <h3 class="text-xl font-semibold text-slate-900 dark:text-white mb-3">Multidimensional Plots</h3>
-          <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Go beyond treemaps. Cross-reference file sizes against modification dates to isolate forgotten archives instantly.</p>
+          <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Go beyond treemaps. Cross-reference file sizes against modification dates to isolate forgotten archives instantly.</p>
         </div>
       </div>
     </section>
@@ -362,8 +403,8 @@
           <thead>
             <tr class="text-slate-900 dark:text-white bg-slate-50 dark:bg-slate-950/50 divide-x divide-slate-200 dark:divide-slate-800">
               <th class="p-4 font-semibold w-2/5">Metric</th>
-              <!-- All data column headers right-aligned -->
-              <th class="p-4 font-semibold text-blue-600 dark:text-blue-400 bg-blue-50/60 dark:bg-blue-950/40 text-right">Drive Sonar</th>
+              <!-- Drive Sonar Header (Highlighted) -->
+              <th class="p-4 font-semibold text-blue-600 dark:text-blue-400 bg-blue-100 dark:bg-blue-900/60 border-x border-blue-200 dark:border-blue-800/60 text-right">Drive Sonar</th>
               <th class="p-4 font-semibold text-slate-500 text-right">WinDirStat</th>
               <th class="p-4 font-semibold text-slate-500 text-right">WizTree</th>
             </tr>
@@ -373,7 +414,7 @@
             <!-- Version tested -->
             <tr class="divide-x divide-slate-200 dark:divide-slate-800">
               <td class="p-4 font-medium">Version tested</td>
-              <td class="p-4 font-mono font-semibold text-blue-600 dark:text-blue-400 bg-blue-50/30 dark:bg-blue-950/20 text-right">0.6.0</td>
+              <td class="p-4 font-mono font-semibold bg-blue-50 dark:bg-blue-950/70 border-x border-blue-100 dark:border-blue-900/50 text-right">0.6.0</td>
               <td class="p-4 font-mono text-slate-500 text-right">2.8.0</td>
               <td class="p-4 font-mono text-slate-500 text-right">4.3.1</td>
             </tr>
@@ -381,7 +422,7 @@
             <!-- License -->
             <tr class="divide-x divide-slate-200 dark:divide-slate-800">
               <td class="p-4 font-medium">License</td>
-              <td class="p-4 font-semibold text-slate-900 dark:text-white bg-blue-50/30 dark:bg-blue-950/20 text-right">Apache 2.0</td>
+              <td class="p-4 font-semibold bg-blue-50 dark:bg-blue-950/70 border-x border-blue-100 dark:border-blue-900/50 text-right">Apache 2.0</td>
               <td class="p-4 text-slate-500 text-right">GPL v2</td>
               <td class="p-4 text-slate-500 text-right">Proprietary</td>
             </tr>
@@ -389,7 +430,7 @@
             <!-- User Mode -->
             <tr class="divide-x divide-slate-200 dark:divide-slate-800">
               <td class="p-4 font-medium">Runs in user mode (no admin required)</td>
-              <td class="p-4 text-emerald-600 dark:text-emerald-400 font-bold bg-blue-50/30 dark:bg-blue-950/20 text-right">✅</td>
+              <td class="p-4 font-bold bg-blue-50 dark:bg-blue-950/70 border-x border-blue-100 dark:border-blue-900/50 text-right">✅</td>
               <td class="p-4 text-emerald-600 dark:text-emerald-400 font-bold text-right">✅</td>
               <td class="p-4 text-rose-500 font-bold text-right">❌<sup><a href="#fn1" id="ref1" class="text-blue-500 underline font-normal scroll-mt-24">[1]</a></sup></td>
             </tr>
@@ -397,7 +438,7 @@
             <!-- Installed Size -->
             <tr class="divide-x divide-slate-200 dark:divide-slate-800">
               <td class="p-4 font-medium">Installed size [MB]</td>
-              <td class="p-4 text-right text-emerald-600 dark:text-emerald-400 font-bold font-mono bg-blue-50/30 dark:bg-blue-950/20">5.7</td>
+              <td class="p-4 text-right font-bold font-mono bg-blue-50 dark:bg-blue-950/70 border-x border-blue-100 dark:border-blue-900/50">5.7</td>
               <td class="p-4 text-right text-slate-500 font-mono">7.1</td>
               <td class="p-4 text-right text-slate-500 font-mono">20.0</td>
             </tr>
@@ -405,7 +446,7 @@
             <!-- Peak Memory Usage -->
             <tr class="divide-x divide-slate-200 dark:divide-slate-800">
               <td class="p-4 font-medium">Peak memory usage (median)<sup><a href="#fn2" id="ref2" class="text-blue-500 underline font-normal scroll-mt-24">[2]</a></sup> [MB]</td>
-              <td class="p-4 text-right text-emerald-600 dark:text-emerald-400 font-bold font-mono bg-blue-50/30 dark:bg-blue-950/20">108.7</td>
+              <td class="p-4 text-right font-bold font-mono bg-blue-50 dark:bg-blue-950/70 border-x border-blue-100 dark:border-blue-900/50">108.7</td>
               <td class="p-4 text-right text-slate-500 font-mono">239.6</td>
               <td class="p-4 text-right text-slate-500 font-mono">635.2</td>
             </tr>
@@ -413,7 +454,7 @@
             <!-- Warm Scan Time -->
             <tr class="divide-x divide-slate-200 dark:divide-slate-800">
               <td class="p-4 font-medium">Warm scan time (median)<sup><a href="#fn3" id="ref3" class="text-blue-500 underline font-normal scroll-mt-24">[3]</a></sup> [s]</td>
-              <td class="p-4 text-right text-emerald-600 dark:text-emerald-400 font-bold font-mono bg-blue-50/30 dark:bg-blue-950/20">3.3</td>
+              <td class="p-4 text-right font-bold font-mono bg-blue-50 dark:bg-blue-950/70 border-x border-blue-100 dark:border-blue-900/50">3.3</td>
               <td class="p-4 text-right text-slate-500 font-mono">9.1</td>
               <td class="p-4 text-right text-slate-500 font-mono">6.5</td>
             </tr>
@@ -421,9 +462,9 @@
             <!-- Cold Scan Time -->
             <tr class="divide-x divide-slate-200 dark:divide-slate-800">
               <td class="p-4 font-medium">Cold scan time (single run)<sup><a href="#fn4" id="ref4" class="text-blue-500 underline font-normal scroll-mt-24">[4]</a></sup> [s]</td>
-              <td class="p-4 text-right font-mono text-slate-700 dark:text-slate-300 bg-blue-50/30 dark:bg-blue-950/20">50.9</td>
+              <td class="p-4 text-right font-bold font-mono bg-blue-50 dark:bg-blue-950/70 border-x border-blue-100 dark:border-blue-900/50">10.6</td>
               <td class="p-4 text-right font-mono text-slate-500">22.9</td>
-              <td class="p-4 text-right font-mono text-slate-500">17.4</td>
+              <td class="p-4 text-right font-mono text-slate-500">17.2</td>
             </tr>
 
           </tbody>
@@ -433,7 +474,7 @@
       <!-- Footnotes -->
       <div class="space-y-3 text-xs text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 pt-6 font-normal leading-relaxed">
         <p id="fn1" class="scroll-mt-24">
-          <a href="#ref1" class="text-blue-500 font-semibold">[1]</a> <strong>Admin requirement:</strong> WizTree requires administrator privileges to read the NTFS Master File Table directly for its full-speed mode; without elevation it falls back to a slower standard directory scan.
+          <a href="#ref1" class="text-blue-500 font-semibold">[1]</a> <strong>Admin requirement:</strong> WizTree requires administrator privileges to read the NTFS Master File Table directly for its full-speed mode; without elevation it falls back to a slower standard directory scan. WinDirStat can be optionally run with admin privileges as well.
         </p>
         <p id="fn2" class="scroll-mt-24">
           <a href="#ref2" class="text-blue-500 font-semibold">[2]</a> <strong>Memory usage:</strong> Median of 3 independent runs, same scan location.
@@ -442,7 +483,7 @@
           <a href="#ref3" class="text-blue-500 font-semibold">[3]</a> <strong>Warm scan:</strong> Median of 5 independent runs of the same folder, each app already opened once beforehand (warm file-system cache) — the scenario most users encounter when re-scanning (e.g., after deleting files). Because all three tools benefit equally from the OS file-system cache under this condition, disk I/O latency is minimized for each of them alike — this measurement isolates each application's own processing efficiency (directory traversal, tree construction, size aggregation) rather than raw disk speed.
         </p>
         <p id="fn4" class="scroll-mt-24">
-          <a href="#ref4" class="text-blue-500 font-semibold">[4]</a> <strong>Cold scan:</strong> Single measurement per app, taken immediately after a full system restart. Cold-boot timings are highly sensitive to background OS activity (Windows Defender, Search Indexing, update services) and were not consistently reproducible across repeated trials on the same machine — treat as illustrative of first-run experience, not a guaranteed figure.
+          <a href="#ref4" class="text-blue-500 font-semibold">[4]</a> <strong>Cold scan:</strong> Median of 3 independent runs per app, each following a full system restart. Disk activity was confirmed quiet via Resource Monitor before every run (queue length ~0, active time 1–3%, throughput under a few hundred KB/sec) to rule out background OS contention (updates, indexing, sync clients) as a confound. WizTree was run with administrator elevation (its intended mode, enabling direct MFT reads); WinDirStat and Drive Sonar were both run in standard user mode. WinDirStat does not report scan duration natively and was timed manually with a stopwatch. Item count varied slightly across runs (~1.2M items). <strong>Note:</strong> if background OS activity (updates, indexing, antivirus scans) is active during a scan, cold-scan times can spike well above these figures — we observed up to ~50s in earlier unconstrained trials — so results are only comparable when disk activity is confirmed idle beforehand.
         </p>
       </div>
     </section>
@@ -451,17 +492,17 @@
     <section id="faq" class="py-20 px-6 max-w-4xl mx-auto border-t border-slate-200 dark:border-slate-900">
       <h2 class="text-3xl font-bold tracking-tight text-center text-slate-900 dark:text-white mb-12">Frequently Asked Questions</h2>
       <div class="space-y-6">
-        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 rounded-xl">
+        <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 rounded-xl">
           <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">Is Drive Sonar open-source and free?</h3>
-          <p class="text-slate-600 dark:text-slate-400 text-sm">Yes, Drive Sonar is 100% free and open-source under the permissive Apache 2.0 License. You can view, audit, or fork the source code on GitHub.</p>
+          <p class="text-slate-600 dark:text-slate-400">Yes, Drive Sonar is 100% free and open-source under the permissive Apache 2.0 License. You can view, audit, or fork the source code on GitHub.</p>
         </div>
-        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 rounded-xl">
+        <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 rounded-xl">
           <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">Why does Drive Sonar excel at warm scans?</h3>
-          <p class="text-slate-600 dark:text-slate-400 text-sm">Drive Sonar is built in Rust with multithreaded directory traversal. When re-scanning directories already cached in system RAM by your OS, Drive Sonar processes tree aggregates and UI state with low memory usage.</p>
+          <p class="text-slate-600 dark:text-slate-400">Drive Sonar is built in Rust with multithreaded directory traversal. When re-scanning directories already cached in system RAM by your OS, Drive Sonar processes tree aggregates and UI state with low memory usage.</p>
         </div>
-        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 rounded-xl">
+        <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 rounded-xl">
           <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">How does Age Scatter Analysis help clean up space?</h3>
-          <p class="text-slate-600 dark:text-slate-400 text-sm">Standard treemaps only highlight file size. Scatter plots place file size on the Y-axis and file age on the X-axis, allowing you to instantly isolate massive files that haven't been modified in years.</p>
+          <p class="text-slate-600 dark:text-slate-400">Standard treemaps only highlight file size. Scatter plots place file size on the Y-axis and file age on the X-axis, allowing you to instantly isolate massive files that haven't been modified in years.</p>
         </div>
       </div>
     </section>
@@ -471,7 +512,7 @@
       <div class="bg-slate-100 dark:bg-gradient-to-b dark:from-slate-900 dark:to-slate-950 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 sm:p-16">
         <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4">Start visualizing your disk today</h2>
         <p class="text-slate-600 dark:text-slate-400 text-base max-w-xl mx-auto mb-8">
-          Lightweight cross-platform binary. Available for Windows, macOS, and Linux.
+          Tiny cross-platform binary. Available for Windows, macOS, and Linux.
         </p>
         <div class="flex flex-col sm:flex-row justify-center gap-4">
           <a href="https://github.com/barun-saha/drive-sonar/releases" target="_blank" rel="noopener" class="bg-blue-600 hover:bg-blue-500 text-white font-semibold px-8 py-3.5 rounded-xl shadow-lg shadow-blue-600/25 transition-all">
