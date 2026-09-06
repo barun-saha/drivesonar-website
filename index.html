@@ -112,6 +112,7 @@
     });
   </script>
 </head>
+
 <body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 antialiased selection:bg-blue-500 selection:text-white transition-colors duration-200">
 
   <!-- Header Navigation -->
@@ -130,12 +131,19 @@
         <a href="https://github.com/barun-saha/drive-sonar/releases" target="_blank" rel="noopener" class="hover:text-blue-600 dark:hover:text-slate-100 transition-colors">Releases</a>
       </nav>
 
-      <div class="hidden md:flex items-center gap-4">
+      <div class="hidden md:flex items-center gap-3">
         <!-- Theme Toggle Button -->
         <button id="theme-toggle" class="p-2 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors" aria-label="Toggle Theme">
           <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
           <svg class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
         </button>
+
+        <!-- LOCATION 1: Desktop GitHub Header Icon Button -->
+        <a href="https://github.com/barun-saha/drive-sonar" target="_blank" rel="noopener" class="p-2 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 hover:text-slate-900 dark:hover:text-white transition-colors" aria-label="GitHub Repository">
+          <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"></path>
+          </svg>
+        </a>
 
         <a href="https://github.com/barun-saha/drive-sonar/releases" target="_blank" rel="noopener" class="bg-blue-600 hover:bg-blue-500 text-white font-medium px-4 py-2 rounded-lg text-sm transition-all duration-200 shadow-md shadow-blue-600/20">
           Get Drive Sonar
@@ -160,6 +168,13 @@
       <a href="#features" class="block text-slate-700 dark:text-slate-300 font-medium py-1.5" onclick="toggleMenu()">Features</a>
       <a href="#comparison" class="block text-slate-700 dark:text-slate-300 font-medium py-1.5" onclick="toggleMenu()">Benchmarks</a>
       <a href="#faq" class="block text-slate-700 dark:text-slate-300 font-medium py-1.5" onclick="toggleMenu()">FAQ</a>
+
+      <!-- LOCATION 2: Mobile Drawer GitHub Link -->
+      <a href="https://github.com/barun-saha/drive-sonar" target="_blank" rel="noopener" class="flex items-center gap-2 text-slate-700 dark:text-slate-300 font-medium py-1.5" onclick="toggleMenu()">
+        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"></path></svg>
+        GitHub Repository
+      </a>
+
       <a href="https://github.com/barun-saha/drive-sonar/releases" target="_blank" rel="noopener" class="block w-full text-center bg-blue-600 hover:bg-blue-500 text-white font-medium px-4 py-2.5 rounded-lg text-sm mt-3">
         Get Drive Sonar
       </a>
@@ -174,7 +189,7 @@
 
       <div class="max-w-4xl mx-auto relative z-10">
         <!-- Badge -->
-        <div class="animate-fade-in-up inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs text-blue-600 dark:text-blue-400 font-semibold uppercase tracking-wider mb-8 transition-transform hover:scale-105 duration-300">
+        <div class="animate-fade-in-up inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-sm text-blue-600 dark:text-blue-400 font-semibold uppercase tracking-wider mb-8 transition-transform hover:scale-105 duration-300">
           <span>⚡ Blazing Fast, Unbelievably Light, User-Mode</span>
         </div>
 
@@ -190,11 +205,17 @@
 
         <!-- Call to Actions -->
         <div class="animate-fade-in-up [animation-delay:500ms] flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-          <a href="https://github.com/barun-saha/drive-sonar/releases" target="_blank" rel="noopener" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-500 text-white font-semibold text-base px-8 py-3.5 rounded-xl shadow-lg shadow-blue-600/30 hover:shadow-blue-500/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200">
-            Download Latest Release
+          <!-- Primary Download Button -->
+          <a href="https://github.com/barun-saha/drive-sonar/releases" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2.5 w-full sm:w-auto bg-blue-600 hover:bg-blue-500 text-white font-semibold text-base px-8 py-3.5 rounded-xl border border-transparent shadow-lg shadow-blue-600/30 hover:shadow-blue-500/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200">
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"></path>
+            </svg>
+            <span>Download Latest Release</span>
           </a>
-          <a href="#comparison" class="w-full sm:w-auto bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 font-medium text-base px-8 py-3.5 rounded-xl hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200">
-            View Performance Benchmarks
+
+          <!-- Secondary Benchmarks Button -->
+          <a href="#comparison" class="inline-flex items-center justify-center w-full sm:w-auto bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 font-semibold text-base px-8 py-3.5 rounded-xl hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200">
+            <span>View Performance Benchmarks</span>
           </a>
         </div>
       </div>
@@ -209,6 +230,7 @@
           height="750"
           loading="lazy"
         />
+      </div>
 
       <!-- App Visual Mockup -->
       <div class="max-w-5xl mx-auto mt-2 relative">
@@ -247,7 +269,7 @@
             <div class="text-[11px] font-mono text-slate-400 flex flex-wrap items-center gap-y-1 gap-x-3 bg-slate-900/60 p-2.5 rounded-lg border border-slate-800/80">
               <div>💾 Drive (C:): <span class="text-slate-200">475.41 GB total</span> • <span class="text-slate-200">373.79 GB used</span> • <span class="text-slate-200">101.63 GB free</span></div>
               <div class="text-slate-600">|</div>
-              <div>🔍 Found <span class="text-slate-200">12,43,165</span> items in <span class="text-blue-400 font-semibold">10.65s</span></div>
+              <div>🔍 Found <span class="text-slate-200">12,43,165</span> items in <span class="text-blue-400 font-semibold">3.54s</span></div>
             </div>
 
             <!-- Main Interface Grid -->
@@ -368,23 +390,41 @@
         <p class="text-slate-600 dark:text-slate-400 text-base">Replaces slow legacy analyzers with a zero-telemetry, lightweight native architecture.</p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out delay-150 bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 p-8 rounded-2xl">
+          <div class="w-12 h-12 bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800/50 rounded-xl flex items-center justify-center text-blue-600 dark:text-blue-400 text-xl mb-6">⚡</div>
+          <h3 class="text-xl font-semibold text-slate-900 dark:text-white mb-3">Minimal Memory Overhead</h3>
+          <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Built with Rust memory optimizations like string boxing, using ~108 MB RAM when processing over 1.2M files.</p>
+        </div>
+        
         <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 p-8 rounded-2xl">
           <div class="w-12 h-12 bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800/50 rounded-xl flex items-center justify-center text-blue-600 dark:text-blue-400 text-xl mb-6">🔒</div>
           <h3 class="text-xl font-semibold text-slate-900 dark:text-white mb-3">User-Mode Execution</h3>
           <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Runs completely without administrator elevation or specialized driver requirements while safely reading user directories.</p>
         </div>
 
-        <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out delay-150 bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 p-8 rounded-2xl">
-          <div class="w-12 h-12 bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800/50 rounded-xl flex items-center justify-center text-blue-600 dark:text-blue-400 text-xl mb-6">⚡</div>
-          <h3 class="text-xl font-semibold text-slate-900 dark:text-white mb-3">Minimal Memory Overhead</h3>
-          <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Built with Rust memory optimizations like string boxing, using ~108 MB RAM when processing over 1.2M files.</p>
-        </div>
-
         <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out delay-300 bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 p-8 rounded-2xl">
           <div class="w-12 h-12 bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800/50 rounded-xl flex items-center justify-center text-blue-600 dark:text-blue-400 text-xl mb-6">📈</div>
           <h3 class="text-xl font-semibold text-slate-900 dark:text-white mb-3">Multidimensional Plots</h3>
           <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Go beyond treemaps. Cross-reference file sizes against modification dates to isolate forgotten archives instantly.</p>
+        </div>
+
+        <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out delay-150 bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 p-8 rounded-2xl">
+          <div class="w-12 h-12 bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800/50 rounded-xl flex items-center justify-center text-blue-600 dark:text-blue-400 text-xl mb-6">📂</div>
+          <h3 class="text-xl font-semibold text-slate-900 dark:text-white mb-3">Interactive File Explorer</h3>
+          <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Browse subdirectories natively, reveal items instantly in your OS file manager, or safely move clutter straight to the Trash with confirmation protection.</p>
+        </div>
+
+        <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out delay-300 bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 p-8 rounded-2xl">
+          <div class="w-12 h-12 bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800/50 rounded-xl flex items-center justify-center text-blue-600 dark:text-blue-400 text-xl mb-6">📑</div>
+          <h3 class="text-xl font-semibold text-slate-900 dark:text-white mb-3">Detailed Text Reports</h3>
+          <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Export point-in-time storage breakdowns to text files. Ideal for power users, sysadmins tracking disk inflation over time, or sharing space audits with team members.</p>
+        </div>
+        
+        <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out delay-300 bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 p-8 rounded-2xl">
+          <div class="w-12 h-12 bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800/50 rounded-xl flex items-center justify-center text-blue-600 dark:text-blue-400 text-xl mb-6">💻</div>
+          <h3 class="text-xl font-semibold text-slate-900 dark:text-white mb-3">Cross-Platform Support</h3>
+          <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Runs natively on macOS, Windows, and Linux. Powered by Tauri for minimal binary footprints and consistent performance across operating systems.</p>
         </div>
       </div>
     </section>
@@ -541,17 +581,6 @@
         Drive Sonar logo and branding reserved.
       </p>
     </div>
-    
-    <a 
-      href="https://tools.launchllama.co?utm_source=badge&utm_medium=referral" 
-      target="_blank" 
-      rel="noopener noreferrer" 
-      class="inline-block mt-6 transition-transform hover:scale-105"
-    >
-      <img src="https://tools.launchllama.co/featured-badge.png?v=2"
-        alt="As seen on Launch Llama Newsletter"
-        width="200" height="50" />
-    </a>
   </footer>
 
   <script>
