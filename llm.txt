@@ -1,0 +1,19 @@
+# Drive Sonar
+
+> Fast, lighweight, cross-platform disk space analyzer for Windows, Linux, and macOS.
+
+## Overview
+Drive Sonar helps users visualize disk usage, locate large files, and recover disk space with parallel directory scanning and visual treemaps. Although optimized for Windows, it runs on Linux and macOS as well. No admin privileges required!
+
+Drive Sonar is an Open-Source software (Apache-2.0 license).
+
+## Key Features
+- **High-Performance Scanning:** Multithreaded engine capable of indexing hundreds of thousands of files per second.
+- **Visual Treemaps:** Interactive breakdown of space consumption by file type and directory.
+- **Age & Type Alanysis:** View a histogram of file types occupying the most space and a scatter plot of size vs. age analysis.
+- **Safety:** Browse files or delete in-app (reversible action), after going through several safety layers, which reduces the potential risk.
+- **Cross-Platform:** Available on Linux (Snap/AppImage), macOS, and Windows.
+
+## Useful Links
+- [Official Website](https://drivesonar.download)
+- [Snap Store Package](https://snapcraft.io/drive-sonar)
