@@ -1,0 +1,13 @@
+# Local dependencies & binaries
+node_modules/
+tailwindcss-windows-x64.exe
+
+# Logs & Cache
+*.log
+.npm/
+
+# System & Editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
