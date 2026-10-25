@@ -41,7 +41,7 @@
       "priceCurrency": "USD"
     },
     "description": "Lightweight, privacy-focused open-source disk space visualizer with native multithreaded directory scanning and 2D age scatter plots.",
-    "softwareVersion": "0.6.0",
+    "softwareVersion": "0.9.0",
     "license": "https://www.apache.org/licenses/LICENSE-2.0",
     "author": {
       "@type": "Person",
@@ -77,6 +77,16 @@
     .animate-fade-in-up {
       animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
     }
+
+    .terminal-cmd-text {
+      font-size: 1.125rem;
+      line-height: 1.6;
+    }
+    @media (min-width: 640px) {
+      .terminal-cmd-text {
+        font-size: 1.25rem;
+      }
+    }
   </style>
 
   <!-- Theme Initialization Script -->
@@ -107,16 +117,26 @@
     });
   </script>
   
-  <!-- Lightweight Tab Switcher & Clipboard Logic -->
+  <!-- Lightweight Tab Switcher, Dynamic Platform CTA, & Clipboard Logic -->
   <script>
-    let activeOs = 'windows';
+    let activeOs = 'winget';
     let activeArch = 'amd64';
 
     const commands = {
-      windows: {
+      winget: {
+        amd64: 'winget install drivesonar',
+        arm64: 'winget install drivesonar',
+        note: 'Default on Windows 10 & 11. Run in Windows Terminal or PowerShell.'
+      },
+      choco: {
         amd64: 'choco install drivesonar',
         arm64: 'choco install drivesonar',
         note: 'Requires Windows PowerShell or Command Prompt with Chocolatey installed.'
+      },
+      macos: {
+        arm64: 'curl -LO https://github.com/barun-saha/drive-sonar/releases/download/v0.9.0/Drive.Sonar_0.9.0_aarch64.dmg && open Drive.Sonar_0.9.0_aarch64.dmg',
+        amd64: 'curl -LO https://github.com/barun-saha/drive-sonar/releases/download/v0.9.0/Drive.Sonar_0.9.0_x64.dmg && open Drive.Sonar_0.9.0_x64.dmg',
+        note: 'Downloads the official DMG disk image and opens it in Finder to install.'
       },
       debian: {
         amd64: 'wget https://github.com/barun-saha/drive-sonar/releases/download/v0.9.0/Drive.Sonar_0.9.0_amd64.deb && sudo apt install ./Drive.Sonar_0.9.0_amd64.deb',
@@ -137,13 +157,14 @@
 
     function updateDisplay() {
       // Update text content
-      document.getElementById('command-text').textContent = commands[activeOs][activeArch];
-      document.getElementById('os-note').textContent = commands[activeOs].note;
+      const cmdData = commands[activeOs] || commands.winget;
+      document.getElementById('command-text').textContent = cmdData[activeArch] || cmdData.amd64;
+      document.getElementById('os-note').textContent = cmdData.note;
 
       // Toggle architecture selector visibility for Windows
       const archSel = document.getElementById('arch-selector');
       const archSelMobile = document.getElementById('arch-selector-mobile');
-      if (activeOs === 'windows') {
+      if (activeOs === 'winget' || activeOs === 'choco') {
         archSel.classList.add('opacity-40', 'pointer-events-none');
         archSelMobile.classList.add('hidden');
       } else {
@@ -151,13 +172,27 @@
         archSelMobile.classList.remove('hidden');
       }
 
+      // Update architecture button labels depending on whether macOS is selected
+      const isMac = activeOs === 'macos';
+      const amd64Label = isMac ? 'Intel (x86_64)' : 'x86_64 / amd64';
+      const arm64Label = isMac ? 'Apple Silicon' : 'ARM64 / aarch64';
+      const amd64Btn = document.getElementById('arch-amd64');
+      const arm64Btn = document.getElementById('arch-arm64');
+      if (amd64Btn) amd64Btn.textContent = amd64Label;
+      if (arm64Btn) arm64Btn.textContent = arm64Label;
+
+      const amd64BtnM = document.getElementById('arch-amd64-m');
+      const arm64BtnM = document.getElementById('arch-arm64-m');
+      if (amd64BtnM) amd64BtnM.textContent = isMac ? 'Intel' : 'x86_64';
+      if (arm64BtnM) arm64BtnM.textContent = isMac ? 'Apple Silicon' : 'ARM64';
+
       // OS Tab Active Styling
       document.querySelectorAll('.os-tab').forEach(tab => {
-        tab.className = 'os-tab px-4 py-2 text-xs sm:text-sm font-semibold rounded-t-lg transition-colors border-b-2 border-transparent text-slate-400 hover:text-slate-200';
+        tab.className = 'os-tab px-4 py-2.5 text-sm sm:text-base font-semibold rounded-t-lg transition-colors border-b-2 border-transparent text-slate-400 hover:text-slate-200 whitespace-nowrap';
       });
       const activeTab = document.getElementById(`tab-${activeOs}`);
       if (activeTab) {
-        activeTab.className = 'os-tab active-tab px-4 py-2 text-xs sm:text-sm font-semibold rounded-t-lg transition-colors border-b-2 border-blue-500 text-blue-400 bg-slate-900/80';
+        activeTab.className = 'os-tab active-tab px-4 py-2.5 text-sm sm:text-base font-semibold rounded-t-lg transition-colors border-b-2 border-blue-500 text-blue-400 bg-slate-900/80 whitespace-nowrap';
       }
 
       // Arch Btn Active Styling
@@ -177,6 +212,10 @@
 
     function selectOs(os) {
       activeOs = os;
+      // Default to Apple Silicon for macos if arm is preferred
+      if (os === 'macos' && activeArch === 'amd64') {
+        activeArch = 'arm64';
+      }
       updateDisplay();
     }
 
@@ -186,7 +225,8 @@
     }
 
     function copyCommand() {
-      const textToCopy = commands[activeOs][activeArch];
+      const cmdData = commands[activeOs] || commands.winget;
+      const textToCopy = cmdData[activeArch] || cmdData.amd64;
       navigator.clipboard.writeText(textToCopy).then(() => {
         const label = document.getElementById('copy-label');
         const btn = document.getElementById('copy-btn');
@@ -200,6 +240,55 @@
         }, 2000);
       });
     }
+
+    function detectVisitorPlatform() {
+      const ua = (navigator.userAgent || '').toLowerCase();
+      const platform = (navigator.platform || '').toLowerCase();
+      let detected = 'windows';
+
+      if (platform.includes('mac') || ua.includes('macintosh') || ua.includes('mac os')) {
+        detected = 'macos';
+      } else if (platform.includes('linux') || ua.includes('linux') || ua.includes('x11')) {
+        detected = 'linux';
+      }
+
+      // Update Hero CTA
+      const heroBtn = document.getElementById('hero-download-btn');
+      const heroTitle = document.getElementById('hero-download-title');
+      const heroSub = document.getElementById('hero-download-sub');
+
+      if (detected === 'macos') {
+        activeOs = 'macos';
+        activeArch = 'arm64';
+        if (heroBtn && heroTitle && heroSub) {
+          heroBtn.href = 'https://github.com/barun-saha/drive-sonar/releases/download/v0.9.0/Drive.Sonar_0.9.0_aarch64.dmg';
+          heroTitle.textContent = 'Download for macOS';
+          heroSub.textContent = 'v0.9.0 • Apple Silicon (.dmg)';
+        }
+      } else if (detected === 'linux') {
+        activeOs = 'debian';
+        activeArch = 'amd64';
+        if (heroBtn && heroTitle && heroSub) {
+          heroBtn.href = 'https://github.com/barun-saha/drive-sonar/releases/download/v0.9.0/Drive.Sonar_0.9.0_amd64.deb';
+          heroTitle.textContent = 'Download for Linux';
+          heroSub.textContent = 'v0.9.0 • Debian / Ubuntu (.deb)';
+        }
+      } else {
+        activeOs = 'winget';
+        activeArch = 'amd64';
+        if (heroBtn && heroTitle && heroSub) {
+          heroBtn.href = 'https://github.com/barun-saha/drive-sonar/releases/download/v0.9.0/Drive.Sonar_0.9.0_x64-setup.exe';
+          heroTitle.textContent = 'Download for Windows';
+          heroSub.textContent = 'v0.9.0 • 64-bit Setup (.exe)';
+        }
+      }
+
+      updateDisplay();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      detectVisitorPlatform();
+    });
   </script>
 </head>
 
@@ -218,7 +307,7 @@
         <a href="#features" class="hover:text-blue-600 dark:hover:text-slate-100 transition-colors">Features</a>
         <a href="#comparison" class="hover:text-blue-600 dark:hover:text-slate-100 transition-colors">Benchmarks</a>
         <a href="#faq" class="hover:text-blue-600 dark:hover:text-slate-100 transition-colors">FAQ</a>
-        <a href="https://github.com/barun-saha/drive-sonar/releases" target="_blank" rel="noopener" class="hover:text-blue-600 dark:hover:text-slate-100 transition-colors">Releases</a>
+        <a href="https://github.com/barun-saha/drive-sonar/releases/tag/v0.9.0" target="_blank" rel="noopener" class="hover:text-blue-600 dark:hover:text-slate-100 transition-colors">Releases</a>
       </nav>
 
       <div class="hidden md:flex items-center gap-3">
@@ -235,7 +324,7 @@
           </svg>
         </a>
 
-        <a href="https://github.com/barun-saha/drive-sonar/releases" target="_blank" rel="noopener" class="bg-blue-600 hover:bg-blue-500 text-white font-medium px-4 py-2 rounded-lg text-sm transition-all duration-200 shadow-md shadow-blue-600/20">
+        <a href="#download" class="bg-blue-600 hover:bg-blue-500 text-white font-medium px-4 py-2 rounded-lg text-sm transition-all duration-200 shadow-md shadow-blue-600/20">
           Get Drive Sonar
         </a>
       </div>
@@ -265,7 +354,7 @@
         GitHub Repository
       </a>
 
-      <a href="https://github.com/barun-saha/drive-sonar/releases" target="_blank" rel="noopener" class="block w-full text-center bg-blue-600 hover:bg-blue-500 text-white font-medium px-4 py-2.5 rounded-lg text-sm mt-3">
+      <a href="#download" onclick="toggleMenu()" class="block w-full text-center bg-blue-600 hover:bg-blue-500 text-white font-medium px-4 py-2.5 rounded-lg text-sm mt-3">
         Get Drive Sonar
       </a>
     </div>
@@ -294,9 +383,9 @@
         </p>
 
         <!-- Call to Actions -->
-        <div class="animate-fade-in-up [animation-delay:500ms] flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+        <div class="animate-fade-in-up [animation-delay:500ms] flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
           <!-- Primary Download Button -->
-          <a href="https://github.com/barun-saha/drive-sonar/releases" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2.5 w-full sm:w-auto bg-blue-600 hover:bg-blue-500 text-white font-semibold text-base px-8 py-3.5 rounded-xl border border-transparent shadow-lg shadow-blue-600/30 hover:shadow-blue-500/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200">
+          <a href="https://github.com/barun-saha/drive-sonar/releases/latest/" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2.5 w-full sm:w-auto bg-blue-600 hover:bg-blue-500 text-white font-semibold text-base px-8 py-3.5 rounded-xl border border-transparent shadow-lg shadow-blue-600/30 hover:shadow-blue-500/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200">
             <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
               <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"></path>
             </svg>
@@ -307,6 +396,59 @@
           <a href="#comparison" class="inline-flex items-center justify-center w-full sm:w-auto bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 font-semibold text-base px-8 py-3.5 rounded-xl hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200">
             <span>View Performance Benchmarks</span>
           </a>
+        </div>
+
+        <!-- Direct Downloads Row -->
+        <div class="animate-fade-in-up [animation-delay:550ms] mb-16">
+          <p class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-500 mb-8">
+            Or download directly &middot; v0.9.0
+          </p>
+
+          <div class="flex flex-col md:flex-row items-center justify-center gap-y-6 md:gap-y-0 md:divide-x divide-slate-200 dark:divide-slate-800">
+
+            <!-- Windows -->
+            <div class="flex flex-wrap items-center justify-center gap-3 mb-6">
+              <span class="text-sm font-semibold text-slate-700 dark:text-slate-300">🪟 Windows</span>
+              <a href="https://github.com/barun-saha/drive-sonar/releases/download/v0.9.0/Drive.Sonar_0.9.0_x64_en-US.msi"
+                 class="text-sm font-medium text-blue-600 dark:text-blue-400 bg-blue-500/5 hover:bg-blue-500/10 border border-slate-200 dark:border-slate-800 hover:border-blue-500/40 px-3 py-1.5 rounded-lg transition-colors">
+                MSI Installer (.msi)
+              </a>
+            </div>
+
+            <!-- Linux -->
+            <div class="flex flex-wrap items-center justify-center gap-3 mb-6">
+              <span class="text-sm font-semibold text-slate-700 dark:text-slate-300">🐧 Linux</span>
+              <a href="https://github.com/barun-saha/drive-sonar/releases/download/v0.9.0/Drive.Sonar_0.9.0_amd64.deb"
+                 class="text-sm font-medium text-blue-600 dark:text-blue-400 bg-blue-500/5 hover:bg-blue-500/10 border border-slate-200 dark:border-slate-800 hover:border-blue-500/40 px-3.5 py-1.5 rounded-lg transition-colors">
+                Debian / Ubuntu (.deb)
+              </a>
+              <a href="https://github.com/barun-saha/drive-sonar/releases/download/v0.9.0/Drive.Sonar-0.9.0-1.x86_64.rpm"
+                 class="text-sm font-medium text-blue-600 dark:text-blue-400 bg-blue-500/5 hover:bg-blue-500/10 border border-slate-200 dark:border-slate-800 hover:border-blue-500/40 px-3.5 py-1.5 rounded-lg transition-colors">
+                Fedora / RHEL (.rpm)
+              </a>
+              <a href="https://github.com/barun-saha/drive-sonar/releases/download/v0.9.0/Drive.Sonar_0.9.0_amd64.AppImage"
+                 class="text-sm font-medium text-blue-600 dark:text-blue-400 bg-blue-500/5 hover:bg-blue-500/10 border border-slate-200 dark:border-slate-800 hover:border-blue-500/40 px-3.5 py-1.5 rounded-lg transition-colors">
+                Universal (.AppImage)
+              </a>
+            </div>
+
+            <!-- macOS -->
+            <div class="flex flex-wrap items-center justify-center gap-3 mb-6">
+              <span class="text-sm font-semibold text-slate-700 dark:text-slate-300">🍏 macOS</span>
+              <a href="https://github.com/barun-saha/drive-sonar/releases/download/v0.9.0/Drive.Sonar_0.9.0_aarch64.dmg"
+                 class="text-sm font-medium text-blue-600 dark:text-blue-400 bg-blue-500/5 hover:bg-blue-500/10 border border-slate-200 dark:border-slate-800 hover:border-blue-500/40 px-3.5 py-1.5 rounded-lg transition-colors">
+                Apple Silicon (.dmg)
+              </a>
+              <a href="https://github.com/barun-saha/drive-sonar/releases/download/v0.9.0/Drive.Sonar_0.9.0_x64.dmg"
+                 class="text-sm font-medium text-blue-600 dark:text-blue-400 bg-blue-500/5 hover:bg-blue-500/10 border border-slate-200 dark:border-slate-800 hover:border-blue-500/40 px-3.5 py-1.5 rounded-lg transition-colors">
+                Intel x64 (.dmg)
+              </a>
+            </div>
+          </div>
+
+          <p class="mt-6 text-sm text-slate-500 dark:text-slate-400">
+            Prefer the command line? <a href="#install" class="text-blue-600 dark:text-blue-400 hover:underline">Jump to terminal installation &darr;</a>
+          </p>
         </div>
       </div>
 
@@ -354,26 +496,32 @@
         <div class="flex flex-wrap items-center justify-between border-b border-slate-800 bg-slate-950/60 px-4 pt-3 gap-2">
           <!-- OS Tabs -->
           <div class="flex items-center gap-1 sm:gap-2 overflow-x-auto scrollbar-none pb-px" id="os-tabs">
-            <button onclick="selectOs('windows')" id="tab-windows" class="os-tab active-tab px-4 py-2 text-xs sm:text-sm font-semibold rounded-t-lg transition-colors border-b-2 border-blue-500 text-blue-400 bg-slate-900/80">
-              🪟 Windows (Choco)
+            <button onclick="selectOs('winget')" id="tab-winget" class="os-tab active-tab px-4 py-2.5 text-sm sm:text-base font-semibold rounded-t-lg transition-colors border-b-2 border-blue-500 text-blue-400 bg-slate-900/80 whitespace-nowrap">
+              🪟 Windows (winget)
             </button>
-            <button onclick="selectOs('debian')" id="tab-debian" class="os-tab px-4 py-2 text-xs sm:text-sm font-semibold rounded-t-lg transition-colors border-b-2 border-transparent text-slate-400 hover:text-slate-200">
+            <button onclick="selectOs('choco')" id="tab-choco" class="os-tab px-4 py-2.5 text-sm sm:text-base font-semibold rounded-t-lg transition-colors border-b-2 border-transparent text-slate-400 hover:text-slate-200 whitespace-nowrap">
+              🍫 Windows (Choco)
+            </button>
+            <button onclick="selectOs('macos')" id="tab-macos" class="os-tab px-4 py-2.5 text-sm sm:text-base font-semibold rounded-t-lg transition-colors border-b-2 border-transparent text-slate-400 hover:text-slate-200 whitespace-nowrap">
+              🍏 macOS (.dmg)
+            </button>
+            <button onclick="selectOs('debian')" id="tab-debian" class="os-tab px-4 py-2.5 text-sm sm:text-base font-semibold rounded-t-lg transition-colors border-b-2 border-transparent text-slate-400 hover:text-slate-200 whitespace-nowrap">
               🐧 Debian / Ubuntu (.deb)
             </button>
-            <button onclick="selectOs('fedora')" id="tab-fedora" class="os-tab px-4 py-2 text-xs sm:text-sm font-semibold rounded-t-lg transition-colors border-b-2 border-transparent text-slate-400 hover:text-slate-200">
+            <button onclick="selectOs('fedora')" id="tab-fedora" class="os-tab px-4 py-2.5 text-sm sm:text-base font-semibold rounded-t-lg transition-colors border-b-2 border-transparent text-slate-400 hover:text-slate-200 whitespace-nowrap">
               🎩 Fedora / RHEL (.rpm)
             </button>
-            <button onclick="selectOs('appimage')" id="tab-appimage" class="os-tab px-4 py-2 text-xs sm:text-sm font-semibold rounded-t-lg transition-colors border-b-2 border-transparent text-slate-400 hover:text-slate-200">
+            <button onclick="selectOs('appimage')" id="tab-appimage" class="os-tab px-4 py-2.5 text-sm sm:text-base font-semibold rounded-t-lg transition-colors border-b-2 border-transparent text-slate-400 hover:text-slate-200 whitespace-nowrap">
               📦 AppImage (Universal)
             </button>
           </div>
 
-          <!-- Architecture Toggle (Hidden for Windows) -->
+          <!-- Architecture Toggle -->
           <div id="arch-selector" class="hidden sm:flex items-center gap-1.5 bg-slate-900 border border-slate-800 rounded-lg p-1 text-xs mb-2">
-            <button onclick="selectArch('amd64')" id="arch-amd64" class="arch-btn px-2.5 py-1 rounded-md font-mono text-slate-200 bg-slate-800 font-medium">
+            <button onclick="selectArch('amd64')" id="arch-amd64" class="arch-btn px-3 py-1.5 rounded-md font-mono text-slate-200 bg-slate-800 font-medium">
               x86_64 / amd64
             </button>
-            <button onclick="selectArch('arm64')" id="arch-arm64" class="arch-btn px-2.5 py-1 rounded-md font-mono text-slate-400 hover:text-slate-200">
+            <button onclick="selectArch('arm64')" id="arch-arm64" class="arch-btn px-3 py-1.5 rounded-md font-mono text-slate-400 hover:text-slate-200">
               ARM64 / aarch64
             </button>
           </div>
@@ -383,26 +531,26 @@
         <div id="arch-selector-mobile" class="sm:hidden flex items-center justify-between px-4 py-2 border-b border-slate-800/60 bg-slate-950/40 text-xs">
           <span class="text-slate-400 font-medium">Architecture:</span>
           <div class="flex gap-1 bg-slate-900 border border-slate-800 rounded-lg p-1">
-            <button onclick="selectArch('amd64')" id="arch-amd64-m" class="arch-btn-m px-2 py-0.5 rounded font-mono text-slate-200 bg-slate-800">
+            <button onclick="selectArch('amd64')" id="arch-amd64-m" class="arch-btn-m px-2.5 py-1 rounded font-mono text-slate-200 bg-slate-800">
               x86_64
             </button>
-            <button onclick="selectArch('arm64')" id="arch-arm64-m" class="arch-btn-m px-2 py-0.5 rounded font-mono text-slate-400">
+            <button onclick="selectArch('arm64')" id="arch-arm64-m" class="arch-btn-m px-2.5 py-1 rounded font-mono text-slate-400">
               ARM64
             </button>
           </div>
         </div>
 
-        <!-- Command Snippet Container -->
-        <div class="p-4 sm:p-6 bg-slate-950/90 font-mono text-xs sm:text-sm relative">
+        <!-- Command Snippet Container with Enlarged Font -->
+        <div class="p-5 sm:p-7 bg-slate-950/95 font-mono relative">
           <div class="flex items-start justify-between gap-4">
             <!-- Terminal Output Text -->
-            <div class="overflow-x-auto scrollbar-none py-1">
-              <span class="text-emerald-400 select-none">$ </span>
-              <span id="command-text" class="text-slate-200 whitespace-pre-wrap break-all">choco install drivesonar</span>
+            <div class="overflow-x-auto scrollbar-none py-1 terminal-cmd-text">
+              <span class="text-emerald-400 select-none font-bold mr-1">$ </span>
+              <span id="command-text" class="text-slate-100 font-mono whitespace-pre-wrap break-all">winget install drivesonar</span>
             </div>
 
             <!-- Copy Button -->
-            <button onclick="copyCommand()" id="copy-btn" class="shrink-0 inline-flex items-center gap-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-2 rounded-lg border border-slate-700 text-xs font-sans font-medium transition-all active:scale-95">
+            <button onclick="copyCommand()" id="copy-btn" class="shrink-0 inline-flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-slate-100 px-4 py-2.5 rounded-xl border border-slate-700 text-sm font-sans font-medium transition-all active:scale-95 shadow-md">
               <svg id="copy-icon" class="w-4 h-4 fill-current text-slate-400" viewBox="0 0 24 24">
                 <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
               </svg>
@@ -412,11 +560,11 @@
         </div>
 
         <!-- Card Footer / Fallback -->
-        <div class="border-t border-slate-800/80 bg-slate-900/50 px-4 py-3 text-xs text-slate-400 flex flex-col sm:flex-row items-center justify-between gap-2">
-          <span id="os-note">Requires Windows PowerShell or Command Prompt with Chocolatey installed.</span>
-          <a href="https://github.com/barun-saha/drive-sonar/releases" target="_blank" rel="noopener" class="text-blue-400 hover:text-blue-300 font-sans inline-flex items-center gap-1 transition-colors">
-            <span>Browse binaries on GitHub Releases</span>
-            <span>→</span>
+        <div class="border-t border-slate-800/80 bg-slate-900/50 px-5 py-3.5 text-sm text-slate-400 flex flex-col sm:flex-row items-center justify-between gap-2">
+          <span id="os-note" class="text-slate-300">Default on Windows 10 & 11. Run in Windows Terminal or PowerShell.</span>
+          <a href="https://github.com/barun-saha/drive-sonar/releases/tag/v0.9.0" target="_blank" rel="noopener" class="text-blue-400 hover:text-blue-300 font-sans inline-flex items-center gap-1.5 transition-colors font-medium">
+            <span>Browse all binaries on GitHub Releases</span>
+            <span>&rarr;</span>
           </a>
         </div>
 
@@ -600,19 +748,33 @@
 
     <!-- Download CTA Section -->
     <section id="download" class="py-20 px-6 max-w-4xl mx-auto text-center">
-      <div class="bg-slate-100 dark:bg-gradient-to-b dark:from-slate-900 dark:to-slate-950 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 sm:p-16">
+      <div class="bg-slate-100 dark:bg-gradient-to-b dark:from-slate-900 dark:to-slate-950 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 sm:p-14">
         <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4">Start visualizing your disk today</h2>
         <p class="text-slate-600 dark:text-slate-400 text-base max-w-xl mx-auto mb-8">
-          Tiny cross-platform binary. Available for Windows, macOS, and Linux.
+          Tiny cross-platform binary (v0.9.0). Fast, private, user-mode execution for Windows, macOS, and Linux.
         </p>
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a href="https://github.com/barun-saha/drive-sonar/releases" target="_blank" rel="noopener" class="bg-blue-600 hover:bg-blue-500 text-white font-semibold px-8 py-3.5 rounded-xl shadow-lg shadow-blue-600/25 transition-all">
-            Download Latest Release
+        <div class="flex flex-wrap items-center justify-center gap-3 mb-6">
+          <a href="https://github.com/barun-saha/drive-sonar/releases/download/v0.9.0/Drive.Sonar_0.9.0_x64-setup.exe" class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-semibold px-6 py-3 rounded-xl shadow-lg shadow-blue-600/25 hover:-translate-y-0.5 active:translate-y-0 transition-all text-sm sm:text-base">
+            <span>🪟 Windows (.exe)</span>
           </a>
-          
-          <a href="https://snapcraft.io/drivesonar" target="_blank" rel="noopener" class="flex justify-center transition-all">
-            <img alt="Get it from the Snap Store" src=https://snapcraft.io/en/dark/install.svg />
+
+          <a href="https://github.com/barun-saha/drive-sonar/releases/download/v0.9.0/Drive.Sonar_0.9.0_aarch64.dmg" class="inline-flex items-center gap-2 bg-slate-900 dark:bg-slate-800 hover:bg-slate-800 dark:hover:bg-slate-700 text-white font-semibold px-6 py-3 rounded-xl border border-slate-700 hover:-translate-y-0.5 active:translate-y-0 transition-all text-sm sm:text-base">
+            <span>🍏 macOS (.dmg)</span>
           </a>
+
+          <a href="https://github.com/barun-saha/drive-sonar/releases/download/v0.9.0/Drive.Sonar_0.9.0_amd64.deb" class="inline-flex items-center gap-2 bg-slate-900 dark:bg-slate-800 hover:bg-slate-800 dark:hover:bg-slate-700 text-white font-semibold px-6 py-3 rounded-xl border border-slate-700 hover:-translate-y-0.5 active:translate-y-0 transition-all text-sm sm:text-base">
+            <span>🐧 Linux (.deb)</span>
+          </a>
+
+          <a href="https://snapcraft.io/drivesonar" target="_blank" rel="noopener" class="flex justify-center transition-all hover:-translate-y-0.5 active:translate-y-0">
+            <img alt="Get it from the Snap Store" class="h-11 object-contain" src="https://snapcraft.io/en/dark/install.svg" />
+          </a>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-center gap-4 text-sm text-slate-500 dark:text-slate-400">
+          <a href="#install" class="hover:text-blue-500 underline transition-colors">Terminal install commands</a>
+          <span>•</span>
+          <a href="https://github.com/barun-saha/drive-sonar/releases/tag/v0.9.0" target="_blank" rel="noopener" class="hover:text-blue-500 transition-colors">Browse all release assets on GitHub &rarr;</a>
         </div>
       </div>
     </section>
@@ -669,3 +831,4 @@
   </script>
 </body>
 </html>
+
