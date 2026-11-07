@@ -41,7 +41,7 @@
       "priceCurrency": "USD"
     },
     "description": "Lightweight, privacy-focused open-source disk space visualizer with native multithreaded directory scanning and 2D age scatter plots.",
-    "softwareVersion": "0.9.0",
+    "softwareVersion": "0.10.0",
     "license": "https://www.apache.org/licenses/LICENSE-2.0",
     "author": {
       "@type": "Person",
@@ -134,23 +134,23 @@
         note: 'Requires Windows PowerShell or Command Prompt with Chocolatey installed.'
       },
       macos: {
-        arm64: 'curl -LO https://github.com/barun-saha/drive-sonar/releases/download/v0.9.0/Drive.Sonar_0.9.0_aarch64.dmg && open Drive.Sonar_0.9.0_aarch64.dmg',
-        amd64: 'curl -LO https://github.com/barun-saha/drive-sonar/releases/download/v0.9.0/Drive.Sonar_0.9.0_x64.dmg && open Drive.Sonar_0.9.0_x64.dmg',
+        arm64: 'curl -LO https://github.com/barun-saha/drive-sonar/releases/download/v0.10.0/Drive.Sonar_0.10.0_aarch64.dmg && open Drive.Sonar_0.10.0_aarch64.dmg',
+        amd64: 'curl -LO https://github.com/barun-saha/drive-sonar/releases/download/v0.10.0/Drive.Sonar_0.10.0_x64.dmg && open Drive.Sonar_0.10.0_x64.dmg',
         note: 'Downloads the official DMG disk image and opens it in Finder to install.'
       },
       debian: {
-        amd64: 'wget https://github.com/barun-saha/drive-sonar/releases/download/v0.9.0/Drive.Sonar_0.9.0_amd64.deb && sudo apt install ./Drive.Sonar_0.9.0_amd64.deb',
-        arm64: 'wget https://github.com/barun-saha/drive-sonar/releases/download/v0.9.0/Drive.Sonar_0.9.0_arm64.deb && sudo apt install ./Drive.Sonar_0.9.0_arm64.deb',
+        amd64: 'wget https://github.com/barun-saha/drive-sonar/releases/download/v0.10.0/Drive.Sonar_0.10.0_amd64.deb && sudo apt install ./Drive.Sonar_0.10.0_amd64.deb',
+        arm64: 'wget https://github.com/barun-saha/drive-sonar/releases/download/v0.10.0/Drive.Sonar_0.10.0_arm64.deb && sudo apt install ./Drive.Sonar_0.10.0_arm64.deb',
         note: 'Works on Debian, Ubuntu, Linux Mint, and Pop!_OS.'
       },
       fedora: {
-        amd64: 'wget https://github.com/barun-saha/drive-sonar/releases/download/v0.9.0/Drive.Sonar-0.9.0-1.x86_64.rpm && sudo dnf install ./Drive.Sonar-0.9.0-1.x86_64.rpm',
-        arm64: 'wget https://github.com/barun-saha/drive-sonar/releases/download/v0.9.0/Drive.Sonar-0.9.0-1.aarch64.rpm && sudo dnf install ./Drive.Sonar-0.9.0-1.aarch64.rpm',
+        amd64: 'wget https://github.com/barun-saha/drive-sonar/releases/download/v0.10.0/Drive.Sonar-0.10.0-1.x86_64.rpm && sudo dnf install ./Drive.Sonar-0.10.0-1.x86_64.rpm',
+        arm64: 'wget https://github.com/barun-saha/drive-sonar/releases/download/v0.10.0/Drive.Sonar-0.10.0-1.aarch64.rpm && sudo dnf install ./Drive.Sonar-0.10.0-1.aarch64.rpm',
         note: 'Works on Fedora, RHEL, CentOS, and AlmaLinux.'
       },
       appimage: {
-        amd64: 'wget https://github.com/barun-saha/drive-sonar/releases/download/v0.9.0/Drive.Sonar_0.9.0_amd64.AppImage && chmod +x Drive.Sonar_0.9.0_amd64.AppImage && ./Drive.Sonar_0.9.0_amd64.AppImage',
-        arm64: 'wget https://github.com/barun-saha/drive-sonar/releases/download/v0.9.0/Drive.Sonar_0.9.0_aarch64.AppImage && chmod +x Drive.Sonar_0.9.0_aarch64.AppImage && ./Drive.Sonar_0.9.0_aarch64.AppImage',
+        amd64: 'wget https://github.com/barun-saha/drive-sonar/releases/download/v0.10.0/Drive.Sonar_0.10.0_amd64.AppImage && chmod +x Drive.Sonar_0.10.0_amd64.AppImage && ./Drive.Sonar_0.10.0_amd64.AppImage',
+        arm64: 'wget https://github.com/barun-saha/drive-sonar/releases/download/v0.10.0/Drive.Sonar_0.10.0_aarch64.AppImage && chmod +x Drive.Sonar_0.10.0_aarch64.AppImage && ./Drive.Sonar_0.10.0_aarch64.AppImage',
         note: 'Universal standalone binary for any Linux distribution.'
       }
     };
@@ -261,25 +261,25 @@
         activeOs = 'macos';
         activeArch = 'arm64';
         if (heroBtn && heroTitle && heroSub) {
-          heroBtn.href = 'https://github.com/barun-saha/drive-sonar/releases/download/v0.9.0/Drive.Sonar_0.9.0_aarch64.dmg';
+          heroBtn.href = 'https://github.com/barun-saha/drive-sonar/releases/download/v0.10.0/Drive.Sonar_0.10.0_aarch64.dmg';
           heroTitle.textContent = 'Download for macOS';
-          heroSub.textContent = 'v0.9.0 • Apple Silicon (.dmg)';
+          heroSub.textContent = 'v0.10.0 • Apple Silicon (.dmg)';
         }
       } else if (detected === 'linux') {
         activeOs = 'debian';
         activeArch = 'amd64';
         if (heroBtn && heroTitle && heroSub) {
-          heroBtn.href = 'https://github.com/barun-saha/drive-sonar/releases/download/v0.9.0/Drive.Sonar_0.9.0_amd64.deb';
+          heroBtn.href = 'https://github.com/barun-saha/drive-sonar/releases/download/v0.10.0/Drive.Sonar_0.10.0_amd64.deb';
           heroTitle.textContent = 'Download for Linux';
-          heroSub.textContent = 'v0.9.0 • Debian / Ubuntu (.deb)';
+          heroSub.textContent = 'v0.10.0 • Debian / Ubuntu (.deb)';
         }
       } else {
         activeOs = 'winget';
         activeArch = 'amd64';
         if (heroBtn && heroTitle && heroSub) {
-          heroBtn.href = 'https://github.com/barun-saha/drive-sonar/releases/download/v0.9.0/Drive.Sonar_0.9.0_x64-setup.exe';
+          heroBtn.href = 'https://github.com/barun-saha/drive-sonar/releases/download/v0.10.0/Drive.Sonar_0.10.0_x64-setup.exe';
           heroTitle.textContent = 'Download for Windows';
-          heroSub.textContent = 'v0.9.0 • 64-bit Setup (.exe)';
+          heroSub.textContent = 'v0.10.0 • 64-bit Setup (.exe)';
         }
       }
 
@@ -307,7 +307,7 @@
         <a href="#features" class="hover:text-blue-600 dark:hover:text-slate-100 transition-colors">Features</a>
         <a href="#comparison" class="hover:text-blue-600 dark:hover:text-slate-100 transition-colors">Benchmarks</a>
         <a href="#faq" class="hover:text-blue-600 dark:hover:text-slate-100 transition-colors">FAQ</a>
-        <a href="https://github.com/barun-saha/drive-sonar/releases/tag/v0.9.0" target="_blank" rel="noopener" class="hover:text-blue-600 dark:hover:text-slate-100 transition-colors">Releases</a>
+        <a href="https://github.com/barun-saha/drive-sonar/releases/tag/v0.10.0" target="_blank" rel="noopener" class="hover:text-blue-600 dark:hover:text-slate-100 transition-colors">Releases</a>
       </nav>
 
       <div class="hidden md:flex items-center gap-3">
@@ -401,7 +401,7 @@
         <!-- Direct Downloads Row -->
         <div class="animate-fade-in-up [animation-delay:550ms] mb-16">
           <p class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-500 mb-8">
-            Or download directly &middot; v0.9.0
+            Or download directly &middot; v0.10.0
           </p>
 
           <div class="flex flex-col md:flex-row items-center justify-center gap-y-6 md:gap-y-0 md:divide-x divide-slate-200 dark:divide-slate-800">
@@ -409,7 +409,7 @@
             <!-- Windows -->
             <div class="flex flex-wrap items-center justify-center gap-3 mb-6">
               <span class="text-sm font-semibold text-slate-700 dark:text-slate-300">🪟 Windows</span>
-              <a href="https://github.com/barun-saha/drive-sonar/releases/download/v0.9.0/Drive.Sonar_0.9.0_x64_en-US.msi"
+              <a href="https://github.com/barun-saha/drive-sonar/releases/download/v0.10.0/Drive.Sonar_0.10.0_x64_en-US.msi"
                  class="text-sm font-medium text-blue-600 dark:text-blue-400 bg-blue-500/5 hover:bg-blue-500/10 border border-slate-200 dark:border-slate-800 hover:border-blue-500/40 px-3 py-1.5 rounded-lg transition-colors">
                 MSI Installer (.msi)
               </a>
@@ -418,15 +418,15 @@
             <!-- Linux -->
             <div class="flex flex-wrap items-center justify-center gap-3 mb-6">
               <span class="text-sm font-semibold text-slate-700 dark:text-slate-300">🐧 Linux</span>
-              <a href="https://github.com/barun-saha/drive-sonar/releases/download/v0.9.0/Drive.Sonar_0.9.0_amd64.deb"
+              <a href="https://github.com/barun-saha/drive-sonar/releases/download/v0.10.0/Drive.Sonar_0.10.0_amd64.deb"
                  class="text-sm font-medium text-blue-600 dark:text-blue-400 bg-blue-500/5 hover:bg-blue-500/10 border border-slate-200 dark:border-slate-800 hover:border-blue-500/40 px-3.5 py-1.5 rounded-lg transition-colors">
                 Debian / Ubuntu (.deb)
               </a>
-              <a href="https://github.com/barun-saha/drive-sonar/releases/download/v0.9.0/Drive.Sonar-0.9.0-1.x86_64.rpm"
+              <a href="https://github.com/barun-saha/drive-sonar/releases/download/v0.10.0/Drive.Sonar-0.10.0-1.x86_64.rpm"
                  class="text-sm font-medium text-blue-600 dark:text-blue-400 bg-blue-500/5 hover:bg-blue-500/10 border border-slate-200 dark:border-slate-800 hover:border-blue-500/40 px-3.5 py-1.5 rounded-lg transition-colors">
                 Fedora / RHEL (.rpm)
               </a>
-              <a href="https://github.com/barun-saha/drive-sonar/releases/download/v0.9.0/Drive.Sonar_0.9.0_amd64.AppImage"
+              <a href="https://github.com/barun-saha/drive-sonar/releases/download/v0.10.0/Drive.Sonar_0.10.0_amd64.AppImage"
                  class="text-sm font-medium text-blue-600 dark:text-blue-400 bg-blue-500/5 hover:bg-blue-500/10 border border-slate-200 dark:border-slate-800 hover:border-blue-500/40 px-3.5 py-1.5 rounded-lg transition-colors">
                 Universal (.AppImage)
               </a>
@@ -435,11 +435,11 @@
             <!-- macOS -->
             <div class="flex flex-wrap items-center justify-center gap-3 mb-6">
               <span class="text-sm font-semibold text-slate-700 dark:text-slate-300">🍏 macOS</span>
-              <a href="https://github.com/barun-saha/drive-sonar/releases/download/v0.9.0/Drive.Sonar_0.9.0_aarch64.dmg"
+              <a href="https://github.com/barun-saha/drive-sonar/releases/download/v0.10.0/Drive.Sonar_0.10.0_aarch64.dmg"
                  class="text-sm font-medium text-blue-600 dark:text-blue-400 bg-blue-500/5 hover:bg-blue-500/10 border border-slate-200 dark:border-slate-800 hover:border-blue-500/40 px-3.5 py-1.5 rounded-lg transition-colors">
                 Apple Silicon (.dmg)
               </a>
-              <a href="https://github.com/barun-saha/drive-sonar/releases/download/v0.9.0/Drive.Sonar_0.9.0_x64.dmg"
+              <a href="https://github.com/barun-saha/drive-sonar/releases/download/v0.10.0/Drive.Sonar_0.10.0_x64.dmg"
                  class="text-sm font-medium text-blue-600 dark:text-blue-400 bg-blue-500/5 hover:bg-blue-500/10 border border-slate-200 dark:border-slate-800 hover:border-blue-500/40 px-3.5 py-1.5 rounded-lg transition-colors">
                 Intel x64 (.dmg)
               </a>
@@ -562,7 +562,7 @@
         <!-- Card Footer / Fallback -->
         <div class="border-t border-slate-800/80 bg-slate-900/50 px-5 py-3.5 text-sm text-slate-400 flex flex-col sm:flex-row items-center justify-between gap-2">
           <span id="os-note" class="text-slate-300">Default on Windows 10 & 11. Run in Windows Terminal or PowerShell.</span>
-          <a href="https://github.com/barun-saha/drive-sonar/releases/tag/v0.9.0" target="_blank" rel="noopener" class="text-blue-400 hover:text-blue-300 font-sans inline-flex items-center gap-1.5 transition-colors font-medium">
+          <a href="https://github.com/barun-saha/drive-sonar/releases/tag/v0.10.0" target="_blank" rel="noopener" class="text-blue-400 hover:text-blue-300 font-sans inline-flex items-center gap-1.5 transition-colors font-medium">
             <span>Browse all binaries on GitHub Releases</span>
             <span>&rarr;</span>
           </a>
@@ -751,18 +751,18 @@
       <div class="bg-slate-100 dark:bg-gradient-to-b dark:from-slate-900 dark:to-slate-950 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 sm:p-14">
         <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4">Start visualizing your disk today</h2>
         <p class="text-slate-600 dark:text-slate-400 text-base max-w-xl mx-auto mb-8">
-          Tiny cross-platform binary (v0.9.0). Fast, private, user-mode execution for Windows, macOS, and Linux.
+          Tiny cross-platform binary (v0.10.0). Fast, private, user-mode execution for Windows, macOS, and Linux.
         </p>
         <div class="flex flex-wrap items-center justify-center gap-3 mb-6">
-          <a href="https://github.com/barun-saha/drive-sonar/releases/download/v0.9.0/Drive.Sonar_0.9.0_x64-setup.exe" class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-semibold px-6 py-3 rounded-xl shadow-lg shadow-blue-600/25 hover:-translate-y-0.5 active:translate-y-0 transition-all text-sm sm:text-base">
+          <a href="https://github.com/barun-saha/drive-sonar/releases/download/v0.10.0/Drive.Sonar_0.10.0_x64-setup.exe" class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-semibold px-6 py-3 rounded-xl shadow-lg shadow-blue-600/25 hover:-translate-y-0.5 active:translate-y-0 transition-all text-sm sm:text-base">
             <span>🪟 Windows (.exe)</span>
           </a>
 
-          <a href="https://github.com/barun-saha/drive-sonar/releases/download/v0.9.0/Drive.Sonar_0.9.0_aarch64.dmg" class="inline-flex items-center gap-2 bg-slate-900 dark:bg-slate-800 hover:bg-slate-800 dark:hover:bg-slate-700 text-white font-semibold px-6 py-3 rounded-xl border border-slate-700 hover:-translate-y-0.5 active:translate-y-0 transition-all text-sm sm:text-base">
+          <a href="https://github.com/barun-saha/drive-sonar/releases/download/v0.10.0/Drive.Sonar_0.10.0_aarch64.dmg" class="inline-flex items-center gap-2 bg-slate-900 dark:bg-slate-800 hover:bg-slate-800 dark:hover:bg-slate-700 text-white font-semibold px-6 py-3 rounded-xl border border-slate-700 hover:-translate-y-0.5 active:translate-y-0 transition-all text-sm sm:text-base">
             <span>🍏 macOS (.dmg)</span>
           </a>
 
-          <a href="https://github.com/barun-saha/drive-sonar/releases/download/v0.9.0/Drive.Sonar_0.9.0_amd64.deb" class="inline-flex items-center gap-2 bg-slate-900 dark:bg-slate-800 hover:bg-slate-800 dark:hover:bg-slate-700 text-white font-semibold px-6 py-3 rounded-xl border border-slate-700 hover:-translate-y-0.5 active:translate-y-0 transition-all text-sm sm:text-base">
+          <a href="https://github.com/barun-saha/drive-sonar/releases/download/v0.10.0/Drive.Sonar_0.10.0_amd64.deb" class="inline-flex items-center gap-2 bg-slate-900 dark:bg-slate-800 hover:bg-slate-800 dark:hover:bg-slate-700 text-white font-semibold px-6 py-3 rounded-xl border border-slate-700 hover:-translate-y-0.5 active:translate-y-0 transition-all text-sm sm:text-base">
             <span>🐧 Linux (.deb)</span>
           </a>
 
@@ -774,7 +774,7 @@
         <div class="flex flex-wrap items-center justify-center gap-4 text-sm text-slate-500 dark:text-slate-400">
           <a href="#install" class="hover:text-blue-500 underline transition-colors">Terminal install commands</a>
           <span>•</span>
-          <a href="https://github.com/barun-saha/drive-sonar/releases/tag/v0.9.0" target="_blank" rel="noopener" class="hover:text-blue-500 transition-colors">Browse all release assets on GitHub &rarr;</a>
+          <a href="https://github.com/barun-saha/drive-sonar/releases/tag/v0.10.0" target="_blank" rel="noopener" class="hover:text-blue-500 transition-colors">Browse all release assets on GitHub &rarr;</a>
         </div>
       </div>
     </section>
