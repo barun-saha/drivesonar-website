@@ -10,22 +10,22 @@
   <meta name="description" content="Reclaim storage efficiently. Drive Sonar scans 1.2M+ files with low memory usage in user mode using Rust and Tauri." />
   <meta name="keywords" content="disk space analyzer, storage visualizer, WinDirStat alternative, WizTree alternative, Rust disk scanner, age analysis scatter plot, disk cleanup tool" />
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://drivesonar.baruns.workers.dev/" />
+  <link rel="canonical" href="https://drivesonar.download/" />
   <meta name="author" content="Barun Saha" />
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://drivesonar.baruns.workers.dev/" />
+  <meta property="og:url" content="https://drivesonar.download/" />
   <meta property="og:title" content="Drive Sonar — Fast, Lightweight Disk Space Visualizer" />
   <meta property="og:description" content="Ultra-fast, user-mode disk analyzer built with Rust and Tauri. Visualize space hogs with dynamic age scatter plots." />
-  <meta property="og:image" content="https://drivesonar.baruns.workers.dev/media/og-image.png" />
+  <meta property="og:image" content="https://drivesonar.download/media/og-image.png" />
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:url" content="https://drivesonar.baruns.workers.dev/" />
+  <meta property="twitter:url" content="https://drivesonar.download/" />
   <meta property="twitter:title" content="Drive Sonar — Fast, Lightweight Disk Space Visualizer" />
   <meta property="twitter:description" content="User-mode disk analyzer built with Rust and Tauri. Visualize space hogs with dynamic age scatter plots." />
-  <meta property="twitter:image" content="https://drivesonar.baruns.workers.dev/media/og-image.png" />
+  <meta property="twitter:image" content="https://drivesonar.download/media/og-image.png" />
 
   <!-- Structured Data (JSON-LD Rich Snippet Schema) -->
   <script type="application/ld+json">
@@ -124,8 +124,8 @@
 
     const commands = {
       winget: {
-        amd64: 'winget install drivesonar',
-        arm64: 'winget install drivesonar',
+        amd64: 'winget install BarunSaha.DriveSonar',
+        arm64: 'winget install BarunSaha.DriveSonar',
         note: 'Default on Windows 10 & 11. Run in Windows Terminal or PowerShell.'
       },
       choco: {
@@ -238,6 +238,19 @@
           label.textContent = 'Copy';
           btn.classList.remove('bg-emerald-600/20', 'border-emerald-500/50', 'text-emerald-400');
         }, 2000);
+      }).catch(() => {
+        // Fallback: select the text so user can manually copy
+        const el = document.getElementById('command-text');
+        if (el) {
+          const range = document.createRange();
+          range.selectNodeContents(el);
+          const sel = window.getSelection();
+          sel.removeAllRanges();
+          sel.addRange(range);
+        }
+        const label = document.getElementById('copy-label');
+        if (label) label.textContent = 'Select & Copy';
+        setTimeout(() => { if (label) label.textContent = 'Copy'; }, 2500);
       });
     }
 
@@ -362,9 +375,9 @@
 
   <main>
     <!-- Hero Section -->
-    <section class="relative pt-16 pb-16 md:pt-24 md:pb-20 px-6 text-center overflow-hidden">
+    <section id="hero" class="relative pt-16 pb-16 md:pt-24 md:pb-20 px-6 text-center overflow-hidden">
       <!-- Soft Breathing Backdrop Glow -->
-      <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-blue-500/10 dark:bg-blue-600/15 blur-[120px] rounded-full pointer-events-none animate-pulse duration-10000"></div>
+      <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-blue-500/10 dark:bg-blue-600/15 blur-[120px] rounded-full pointer-events-none animate-pulse"></div>
 
       <div class="max-w-4xl mx-auto relative z-10">
         <!-- Badge -->
@@ -379,17 +392,17 @@
 
         <!-- Subtitle -->
         <p class="animate-fade-in-up [animation-delay:400ms] text-lg sm:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed mb-10 font-normal">
-          A lightweight, cross-platform approach to disk usage analytics. Scan millions of items quickly <em>without</em> administrator rights, minimal memory overhead, and multidimensional age analysis.
+          A lightweight, cross-platform approach to disk usage analytics. Scan millions of items quickly <em>without</em> administrator rights — with minimal memory overhead and multidimensional age analysis.
         </p>
 
         <!-- Call to Actions -->
         <div class="animate-fade-in-up [animation-delay:500ms] flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
           <!-- Primary Download Button -->
-          <a href="https://github.com/barun-saha/drive-sonar/releases/latest/" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2.5 w-full sm:w-auto bg-blue-600 hover:bg-blue-500 text-white font-semibold text-base px-8 py-3.5 rounded-xl border border-transparent shadow-lg shadow-blue-600/30 hover:shadow-blue-500/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200">
+          <a id="hero-download-btn" href="https://github.com/barun-saha/drive-sonar/releases/latest/" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2.5 w-full sm:w-auto bg-blue-600 hover:bg-blue-500 text-white font-semibold text-base px-8 py-3.5 rounded-xl border border-transparent shadow-lg shadow-blue-600/30 hover:shadow-blue-500/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200">
             <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
               <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"></path>
             </svg>
-            <span>Download Latest Release</span>
+            <span id="hero-download-title">Download Latest Release</span>
           </a>
 
           <!-- Secondary Benchmarks Button -->
@@ -397,6 +410,9 @@
             <span>View Performance Benchmarks</span>
           </a>
         </div>
+
+        <!-- Hero CTA sub-text (updated by platform detection) -->
+        <p id="hero-download-sub" class="text-xs text-slate-500 dark:text-slate-500 -mt-6 mb-2"></p>
 
         <!-- Direct Downloads Row -->
         <div class="animate-fade-in-up [animation-delay:550ms] mb-16">
@@ -459,6 +475,7 @@
             src="https://www.youtube-nocookie.com/embed/mGdI-Px6GYE" 
             title="Drive Sonar Live Demo Video" 
             class="w-full h-full border-0"
+            loading="lazy"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
             allowfullscreen>
           </iframe>
@@ -546,7 +563,7 @@
             <!-- Terminal Output Text -->
             <div class="overflow-x-auto scrollbar-none py-1 terminal-cmd-text">
               <span class="text-emerald-400 select-none font-bold mr-1">$ </span>
-              <span id="command-text" class="text-slate-100 font-mono whitespace-pre-wrap break-all">winget install drivesonar</span>
+              <span id="command-text" class="text-slate-100 font-mono whitespace-pre-wrap break-all">winget install BarunSaha.DriveSonar</span>
             </div>
 
             <!-- Copy Button -->
@@ -588,7 +605,7 @@
         <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out delay-150 bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 p-8 rounded-2xl">
           <div class="w-12 h-12 bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800/50 rounded-xl flex items-center justify-center text-blue-600 dark:text-blue-400 text-xl mb-6">⚡</div>
           <h3 class="text-xl font-semibold text-slate-900 dark:text-white mb-3">Minimal Overhead</h3>
-          <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Built with Rust's speed and memory <em>optimizations</em>, using ~120 MB RAM when processing over 1.26M files.</p>
+          <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Built with Rust's speed and memory <em>optimizations</em>, using ~300 MB RAM when processing over 1.26M files.</p>
         </div>
         
         <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out delay-300 bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 p-8 rounded-2xl">
@@ -622,12 +639,11 @@
       <div class="text-center max-w-2xl mx-auto mb-10">
         <h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white mb-3">Disk Scanner Performance Comparison</h2>
         <p class="text-slate-600 dark:text-slate-400 text-sm">
-          Measured on a regular Windows laptop with antivirus, OneDrive, and other background software running; same folder (<code>C:\Users\barun</code>, about 1.26 million files). Cells show median (range).
+          Measured on a regular Windows laptop with antivirus, OneDrive, and other background software running; same folder (<code>C:\Users\barun</code>, about 1.2M+ files). Cells show median (range).
         </p>
       </div>
 
       <!-- Key Findings / Supported Claims -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
       <div class="overflow-x-auto mb-4">
         <table class="w-full text-left text-sm border-collapse bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 divide-y divide-slate-200 dark:divide-slate-800">
           <thead>
@@ -861,4 +877,5 @@
   </script>
 </body>
 </html>
+
 
