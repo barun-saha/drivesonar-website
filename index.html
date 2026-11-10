@@ -588,7 +588,7 @@
         <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out delay-150 bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 p-8 rounded-2xl">
           <div class="w-12 h-12 bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800/50 rounded-xl flex items-center justify-center text-blue-600 dark:text-blue-400 text-xl mb-6">⚡</div>
           <h3 class="text-xl font-semibold text-slate-900 dark:text-white mb-3">Minimal Overhead</h3>
-          <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Built with Rust's speed and memory <em>optimizations</em>, using ~110 MB RAM when processing over 1.2M files.</p>
+          <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Built with Rust's speed and memory <em>optimizations</em>, using ~120 MB RAM when processing over 1.26M files.</p>
         </div>
         
         <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out delay-300 bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 p-8 rounded-2xl">
@@ -622,30 +622,31 @@
       <div class="text-center max-w-2xl mx-auto mb-10">
         <h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white mb-3">Disk Scanner Performance Comparison</h2>
         <p class="text-slate-600 dark:text-slate-400 text-sm">
-          All scans performed on the same Windows machine and drive (SSD) over about 1.2M files (to be updated for v0.10.0)
+          Measured on a regular Windows laptop with antivirus, OneDrive, and other background software running; same folder (<code>C:\Users\barun</code>, about 1.26 million files). Cells show median (range).
         </p>
       </div>
 
-      <div class="overflow-x-auto mb-8">
+      <!-- Key Findings / Supported Claims -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+      <div class="overflow-x-auto mb-4">
         <table class="w-full text-left text-sm border-collapse bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 divide-y divide-slate-200 dark:divide-slate-800">
           <thead>
             <tr class="text-slate-900 dark:text-white bg-slate-50 dark:bg-slate-950/50 divide-x divide-slate-200 dark:divide-slate-800">
               <th class="p-4 font-semibold w-2/5">Metric</th>
               <!-- Drive Sonar Header (Highlighted) -->
-              <th class="p-4 font-semibold text-blue-600 dark:text-blue-400 bg-blue-100 dark:bg-blue-900/60 border-x border-blue-200 dark:border-blue-800/60 text-right">Drive Sonar</th>
-              <th class="p-4 font-semibold text-slate-500 text-right">WinDirStat</th>
-              <th class="p-4 font-semibold text-slate-500 text-right">WizTree</th>
+              <th class="p-4 font-semibold text-blue-600 dark:text-blue-400 bg-blue-100 dark:bg-blue-900/60 border-x border-blue-200 dark:border-blue-800/60 text-right">
+                Drive Sonar 0.10.0
+              </th>
+              <th class="p-4 font-semibold text-slate-700 dark:text-slate-300 text-right">
+                WinDirStat 2.8.0
+                <span class="block text-xs font-normal text-slate-500">(non-admin mode)</span>
+              </th>
+              <th class="p-4 font-semibold text-slate-700 dark:text-slate-300 text-right">
+                WizTree 4.3.1
+              </th>
             </tr>
           </thead>
           <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
-
-            <!-- Version tested -->
-            <tr class="divide-x divide-slate-200 dark:divide-slate-800">
-              <td class="p-4 font-medium">Version tested</td>
-              <td class="p-4 font-mono font-semibold bg-blue-50 dark:bg-blue-950/70 border-x border-blue-100 dark:border-blue-900/50 text-right">0.6.0</td>
-              <td class="p-4 font-mono text-slate-500 text-right">2.8.0</td>
-              <td class="p-4 font-mono text-slate-500 text-right">4.3.1</td>
-            </tr>
 
             <!-- License -->
             <tr class="divide-x divide-slate-200 dark:divide-slate-800">
@@ -657,8 +658,8 @@
 
             <!-- User Mode -->
             <tr class="divide-x divide-slate-200 dark:divide-slate-800">
-              <td class="p-4 font-medium">Runs in user mode (no admin required)</td>
-              <td class="p-4 font-bold bg-blue-50 dark:bg-blue-950/70 border-x border-blue-100 dark:border-blue-900/50 text-right">✅</td>
+              <td class="p-4 font-medium">Runs in user mode (no admin)</td>
+              <td class="p-4 font-bold bg-blue-50 dark:bg-blue-950/70 border-x border-blue-100 dark:border-blue-900/50 text-right text-emerald-600 dark:text-emerald-400">✅</td>
               <td class="p-4 text-emerald-600 dark:text-emerald-400 font-bold text-right">✅</td>
               <td class="p-4 text-rose-500 font-bold text-right">❌<sup><a href="#fn1" id="ref1" class="text-blue-500 underline font-normal scroll-mt-24">[1]</a></sup></td>
             </tr>
@@ -666,33 +667,61 @@
             <!-- Installed Size -->
             <tr class="divide-x divide-slate-200 dark:divide-slate-800">
               <td class="p-4 font-medium">Installed size [MB]</td>
-              <td class="p-4 text-right font-bold font-mono bg-blue-50 dark:bg-blue-950/70 border-x border-blue-100 dark:border-blue-900/50">5.7</td>
+              <td class="p-4 text-right font-bold font-mono bg-blue-50 dark:bg-blue-950/70 border-x border-blue-100 dark:border-blue-900/50">6.3</td>
               <td class="p-4 text-right text-slate-500 font-mono">7.1</td>
               <td class="p-4 text-right text-slate-500 font-mono">20.0</td>
             </tr>
 
-            <!-- Peak Memory Usage -->
+            <!-- Memory, Whole App (Peak) -->
             <tr class="divide-x divide-slate-200 dark:divide-slate-800">
-              <td class="p-4 font-medium">Peak memory usage (median)<sup><a href="#fn2" id="ref2" class="text-blue-500 underline font-normal scroll-mt-24">[2]</a></sup> [MB]</td>
-              <td class="p-4 text-right font-bold font-mono bg-blue-50 dark:bg-blue-950/70 border-x border-blue-100 dark:border-blue-900/50">108.7</td>
-              <td class="p-4 text-right text-slate-500 font-mono">239.6</td>
-              <td class="p-4 text-right text-slate-500 font-mono">635.2</td>
+              <td class="p-4 font-medium">Memory, whole app [MB]<sup><a href="#fn2" id="ref2" class="text-blue-500 underline font-normal scroll-mt-24">[2]</a></sup></td>
+              <td class="p-4 text-right font-mono bg-blue-50 dark:bg-blue-950/70 border-x border-blue-100 dark:border-blue-900/50">
+                305.6 <span class="text-xs font-normal text-blue-700 dark:text-blue-300 block sm:inline">(287.2–320.3)</span>
+              </td>
+              <td class="p-4 text-right text-slate-500 font-mono">
+                286.8 <span class="text-xs font-normal text-slate-400 block sm:inline">(280.8–292.0)</span>
+              </td>
+              <td class="p-4 text-right text-slate-500 font-mono">
+                560.1 <span class="text-xs font-normal text-slate-400 block sm:inline">(559.4–564.5)</span>
+              </td>
+            </tr>
+
+            <!-- Memory Sub-row: Scan Engine -->
+            <tr class="divide-x divide-slate-200 dark:divide-slate-800 bg-slate-50/50 dark:bg-slate-950/30">
+              <td class="p-4 pl-7 text-xs sm:text-sm font-normal text-slate-600 dark:text-slate-400">↳ of which scan engine [MB]</td>
+              <td class="p-4 text-right font-mono bg-blue-50 dark:bg-blue-950/70 border-x border-blue-100 dark:border-blue-900/50">
+                121.6 <span class="text-xs font-normal text-blue-700 dark:text-blue-300 block sm:inline">(118.9–123.4)</span>
+              </td>
+              <td class="p-4 text-right text-slate-400 font-mono">&ndash;</td>
+              <td class="p-4 text-right text-slate-400 font-mono">&ndash;</td>
             </tr>
 
             <!-- Warm Scan Time -->
             <tr class="divide-x divide-slate-200 dark:divide-slate-800">
-              <td class="p-4 font-medium">Warm scan time (median)<sup><a href="#fn3" id="ref3" class="text-blue-500 underline font-normal scroll-mt-24">[3]</a></sup> [s]</td>
-              <td class="p-4 text-right font-bold font-mono bg-blue-50 dark:bg-blue-950/70 border-x border-blue-100 dark:border-blue-900/50">3.3</td>
-              <td class="p-4 text-right text-slate-500 font-mono">9.1</td>
-              <td class="p-4 text-right text-slate-500 font-mono">6.5</td>
+              <td class="p-4 font-medium">Warm scan [s]<sup><a href="#fn3" id="ref3" class="text-blue-500 underline font-normal scroll-mt-24">[3]</a></sup></td>
+              <td class="p-4 text-right font-bold font-mono bg-blue-50 dark:bg-blue-950/70 border-x border-blue-100 dark:border-blue-900/50">
+                4.7 <span class="text-xs font-normal text-blue-700 dark:text-blue-300 block sm:inline">(4.4–5.3)</span>
+              </td>
+              <td class="p-4 text-right text-slate-500 font-mono">
+                9.4 <span class="text-xs font-normal text-slate-400 block sm:inline">(6.4–10.3)</span>
+              </td>
+              <td class="p-4 text-right text-slate-500 font-mono">
+                8.1 <span class="text-xs font-normal text-slate-400 block sm:inline">(7.3–9.6)</span>
+              </td>
             </tr>
 
             <!-- Cold Scan Time -->
             <tr class="divide-x divide-slate-200 dark:divide-slate-800">
-              <td class="p-4 font-medium">Cold scan time (single run)<sup><a href="#fn4" id="ref4" class="text-blue-500 underline font-normal scroll-mt-24">[4]</a></sup> [s]</td>
-              <td class="p-4 text-right font-bold font-mono bg-blue-50 dark:bg-blue-950/70 border-x border-blue-100 dark:border-blue-900/50">10.6</td>
-              <td class="p-4 text-right font-mono text-slate-500">22.9</td>
-              <td class="p-4 text-right font-mono text-slate-500">17.2</td>
+              <td class="p-4 font-medium">Cold scan [s]<sup><a href="#fn4" id="ref4" class="text-blue-500 underline font-normal scroll-mt-24">[4]</a></sup></td>
+              <td class="p-4 text-right font-bold font-mono bg-blue-50 dark:bg-blue-950/70 border-x border-blue-100 dark:border-blue-900/50">
+                10.7 <span class="text-xs font-normal text-blue-700 dark:text-blue-300 block sm:inline">(6.9–25.5)</span>
+              </td>
+              <td class="p-4 text-right font-mono text-slate-500">
+                23.4 <span class="text-xs font-normal text-slate-400 block sm:inline">(22.5–30.2)</span>
+              </td>
+              <td class="p-4 text-right font-mono text-slate-500">
+                13.7 <span class="text-xs font-normal text-slate-400 block sm:inline">(8.9–29.4)</span>
+              </td>
             </tr>
             
             <!-- Platform -->
@@ -707,22 +736,23 @@
         </table>
       </div>
 
+
       <!-- Footnotes -->
       <div class="space-y-3 text-xs text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 pt-6 font-normal leading-relaxed">
         <p id="fn1" class="scroll-mt-24">
-          <a href="#ref1" class="text-blue-500 font-semibold">[1]</a> <strong>Admin requirement:</strong> WizTree requires administrator privileges to read the NTFS Master File Table directly for its full-speed mode; without elevation it falls back to a slower standard directory scan. WinDirStat can be optionally run with admin privileges as well.
+          <a href="#ref1" class="text-blue-500 font-semibold">[1]</a> <strong>Admin requirement:</strong> WizTree requires administrator privileges to read the NTFS Master File Table directly for its full-speed mode; without elevation it falls back to a slower standard directory scan. WinDirStat (non-admin mode) and Drive Sonar run in standard user mode without elevation.
         </p>
         <p id="fn2" class="scroll-mt-24">
-          <a href="#ref2" class="text-blue-500 font-semibold">[2]</a> <strong>Memory usage:</strong> Median of 3 independent runs, same scan location.
+          <a href="#ref2" class="text-blue-500 font-semibold">[2]</a> <strong>Peak memory:</strong> Private memory of every process the app runs, as shown in Task Manager's Memory column. Drive Sonar is the scan engine (about 120 MB) plus the Microsoft WebView2 runtime that draws its interface (about 200 MB). WinDirStat and WizTree are single native processes. Sample size: Drive Sonar n=34 (all scans); WinDirStat and WizTree n=5.
         </p>
         <p id="fn3" class="scroll-mt-24">
-          <a href="#ref3" class="text-blue-500 font-semibold">[3]</a> <strong>Warm scan:</strong> Median of 5 independent runs of the same folder, each app already opened once beforehand (warm file-system cache) — the scenario most users encounter when re-scanning (e.g., after deleting files). Because all three tools benefit equally from the OS file-system cache under this condition, disk I/O latency is minimized for each of them alike — this measurement isolates each application's own processing efficiency (directory traversal, tree construction, size aggregation) rather than raw disk speed.
+          <a href="#ref3" class="text-blue-500 font-semibold">[3]</a> <strong>Warm scan:</strong> Repeated scans without rebooting. Median and range of 5 runs for WinDirStat and WizTree, and of 27 runs over 7 sessions for Drive Sonar. Each Drive Sonar session of 5 runs has a median of 4.5–4.8 s.
         </p>
         <p id="fn4" class="scroll-mt-24">
-          <a href="#ref4" class="text-blue-500 font-semibold">[4]</a> <strong>Cold scan:</strong> Median of 3 independent runs per app, each following a full system restart. Disk activity was confirmed quiet via Resource Monitor before every run (queue length ~0, active time 1–3%, throughput under a few hundred KB/sec) to rule out background OS contention (updates, indexing, sync clients) as a confound. WizTree was run with administrator elevation (its intended mode, enabling direct MFT reads); WinDirStat and Drive Sonar were both run in standard user mode. WinDirStat does not report scan duration natively and was timed manually with a stopwatch. Item count varied slightly across runs (~1.2M items). <strong>Note:</strong> if background OS activity (updates, indexing, antivirus scans) is active during a scan, cold-scan times can spike well above these figures — we observed up to ~50s in earlier unconstrained trials — so results are only comparable when disk activity is confirmed idle beforehand.
+          <a href="#ref4" class="text-blue-500 font-semibold">[4]</a> <strong>Cold scan:</strong> Median and range of 7 scans for all three, each after a full power-off with the disk idle beforehand. Cold times vary widely on every tool, because background disk activity can make any single cold scan much slower. WizTree was run elevated (MFT mode).
         </p>
         <p id="fn5" class="scroll-mt-24">
-          <a href="#ref5" class="text-blue-500 font-semibold">[5]</a> <strong>Optimization:</strong> Disk scanning speed is optimized for Windows.
+          <a href="#ref5" class="text-blue-500 font-semibold">[5]</a> <strong>Platform support:</strong> Drive Sonar runs natively on Windows, Linux, and macOS. WinDirStat and WizTree support Windows only. Disk scanning speed is optimized for Windows.
         </p>
       </div>
     </section>
