@@ -709,8 +709,8 @@
       <!-- Animated benchmark charts -->
       <div class="grid md:grid-cols-2 gap-10 mb-10">
         <div class="bench-chart" data-chart="cold">
-          <h3 class="text-lg font-semibold text-slate-900 dark:text-white">Cold scan <span class="text-sm font-normal text-slate-500 dark:text-slate-400">&middot; seconds, lower is better</span></h3>
-          <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 mb-4">Each scan after a full power-off. WizTree run elevated.</p>
+          <h3 class="text-lg font-semibold text-slate-900 dark:text-white">First scan <span class="text-sm font-normal text-slate-500 dark:text-slate-400">(cold scan) &middot; seconds, lower is better</span></h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 mb-4">The first scan after starting the computer. WizTree run in admin mode.</p>
           <div class="grid grid-cols-[6.5rem_1fr_5rem] items-center gap-3 py-2" title="Drive Sonar: median 10.7 s (range 6.9&ndash;25.5)">
             <span class="text-sm font-semibold text-slate-900 dark:text-white">Drive Sonar</span>
             <div class="relative h-6 rounded bg-slate-100 dark:bg-slate-800/70">
@@ -742,38 +742,38 @@
             <span class="text-right font-mono text-sm text-slate-900 dark:text-slate-100 leading-tight">13.7 <span class="text-xs text-slate-500 dark:text-slate-400">s</span><span class="block text-xs text-slate-500 dark:text-slate-400">8.9&ndash;29.4</span></span>
           </div>
         </div>
-        <div class="bench-chart" data-chart="mem">
-          <h3 class="text-lg font-semibold text-slate-900 dark:text-white">Memory, whole app <span class="text-sm font-normal text-slate-500 dark:text-slate-400">&middot; MB, lower is better</span></h3>
-          <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 mb-4">All processes of the app. Drive Sonar includes the WebView2 UI runtime.</p>
-          <div class="grid grid-cols-[6.5rem_1fr_5rem] items-center gap-3 py-2" title="Drive Sonar: median 305.6 MB (range 287.2&ndash;320.3)">
+        <div class="bench-chart" data-chart="warm">
+          <h3 class="text-lg font-semibold text-slate-900 dark:text-white">Re-scan <span class="text-sm font-normal text-slate-500 dark:text-slate-400">(warm scan) &middot; seconds, lower is better</span></h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 mb-4">Scanning the same folder again in the same session. WizTree run in admin mode.</p>
+          <div class="grid grid-cols-[6.5rem_1fr_5rem] items-center gap-3 py-2" title="Drive Sonar: median 4.7 s (range 4.4&ndash;5.3)">
             <span class="text-sm font-semibold text-slate-900 dark:text-white">Drive Sonar</span>
             <div class="relative h-6 rounded bg-slate-100 dark:bg-slate-800/70">
-              <div class="bench-bar absolute inset-y-0 left-0 rounded-r bg-blue-500" style="--w:50.9%"></div>
-              <div class="bench-range absolute top-1/2 -translate-y-1/2 h-3 border-x-2 border-slate-900 dark:border-white" style="left:47.9%;width:5.5%">
+              <div class="bench-bar absolute inset-y-0 left-0 rounded-r bg-blue-500" style="--w:14.7%"></div>
+              <div class="bench-range absolute top-1/2 -translate-y-1/2 h-3 border-x-2 border-slate-900 dark:border-white" style="left:13.8%;width:2.8%">
                 <div class="absolute top-1/2 inset-x-0 h-0.5 -translate-y-1/2 bg-slate-900 dark:bg-white"></div>
               </div>
             </div>
-            <span class="text-right font-mono text-sm text-slate-900 dark:text-slate-100 leading-tight">305.6 <span class="text-xs text-slate-500 dark:text-slate-400">MB</span><span class="block text-xs text-slate-500 dark:text-slate-400">287.2&ndash;320.3</span></span>
+            <span class="text-right font-mono text-sm text-slate-900 dark:text-slate-100 leading-tight">4.7 <span class="text-xs text-slate-500 dark:text-slate-400">s</span><span class="block text-xs text-slate-500 dark:text-slate-400">4.4&ndash;5.3</span></span>
           </div>
-          <div class="grid grid-cols-[6.5rem_1fr_5rem] items-center gap-3 py-2" title="WinDirStat: median 286.8 MB (range 280.8&ndash;292.0)">
+          <div class="grid grid-cols-[6.5rem_1fr_5rem] items-center gap-3 py-2" title="WinDirStat: median 9.4 s (range 6.4&ndash;10.3)">
             <span class="text-sm text-slate-600 dark:text-slate-300">WinDirStat</span>
             <div class="relative h-6 rounded bg-slate-100 dark:bg-slate-800/70">
-              <div class="bench-bar absolute inset-y-0 left-0 rounded-r bg-slate-400 dark:bg-slate-500" style="--w:47.8%"></div>
-              <div class="bench-range absolute top-1/2 -translate-y-1/2 h-3 border-x-2 border-slate-900 dark:border-white" style="left:46.8%;width:1.9%">
+              <div class="bench-bar absolute inset-y-0 left-0 rounded-r bg-slate-400 dark:bg-slate-500" style="--w:29.4%"></div>
+              <div class="bench-range absolute top-1/2 -translate-y-1/2 h-3 border-x-2 border-slate-900 dark:border-white" style="left:20.0%;width:12.2%">
                 <div class="absolute top-1/2 inset-x-0 h-0.5 -translate-y-1/2 bg-slate-900 dark:bg-white"></div>
               </div>
             </div>
-            <span class="text-right font-mono text-sm text-slate-900 dark:text-slate-100 leading-tight">286.8 <span class="text-xs text-slate-500 dark:text-slate-400">MB</span><span class="block text-xs text-slate-500 dark:text-slate-400">280.8&ndash;292.0</span></span>
+            <span class="text-right font-mono text-sm text-slate-900 dark:text-slate-100 leading-tight">9.4 <span class="text-xs text-slate-500 dark:text-slate-400">s</span><span class="block text-xs text-slate-500 dark:text-slate-400">6.4&ndash;10.3</span></span>
           </div>
-          <div class="grid grid-cols-[6.5rem_1fr_5rem] items-center gap-3 py-2" title="WizTree: median 560.1 MB (range 559.4&ndash;564.5)">
+          <div class="grid grid-cols-[6.5rem_1fr_5rem] items-center gap-3 py-2" title="WizTree: median 8.1 s (range 7.3&ndash;9.6)">
             <span class="text-sm text-slate-600 dark:text-slate-300">WizTree</span>
             <div class="relative h-6 rounded bg-slate-100 dark:bg-slate-800/70">
-              <div class="bench-bar absolute inset-y-0 left-0 rounded-r bg-slate-400 dark:bg-slate-500" style="--w:93.3%"></div>
-              <div class="bench-range absolute top-1/2 -translate-y-1/2 h-3 border-x-2 border-slate-900 dark:border-white" style="left:93.2%;width:0.9%">
+              <div class="bench-bar absolute inset-y-0 left-0 rounded-r bg-slate-400 dark:bg-slate-500" style="--w:25.3%"></div>
+              <div class="bench-range absolute top-1/2 -translate-y-1/2 h-3 border-x-2 border-slate-900 dark:border-white" style="left:22.8%;width:7.2%">
                 <div class="absolute top-1/2 inset-x-0 h-0.5 -translate-y-1/2 bg-slate-900 dark:bg-white"></div>
               </div>
             </div>
-            <span class="text-right font-mono text-sm text-slate-900 dark:text-slate-100 leading-tight">560.1 <span class="text-xs text-slate-500 dark:text-slate-400">MB</span><span class="block text-xs text-slate-500 dark:text-slate-400">559.4&ndash;564.5</span></span>
+            <span class="text-right font-mono text-sm text-slate-900 dark:text-slate-100 leading-tight">8.1 <span class="text-xs text-slate-500 dark:text-slate-400">s</span><span class="block text-xs text-slate-500 dark:text-slate-400">7.3&ndash;9.6</span></span>
           </div>
         </div>
       </div>
