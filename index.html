@@ -659,29 +659,40 @@
       <p class="text-slate-600 dark:text-slate-400 text-lg mb-10">Open source, with no telemetry in the app.</p>
 
       <div>
-        <div class="grid md:grid-cols-[16rem_1fr] gap-x-10 gap-y-2 py-8 border-t border-slate-200 dark:border-slate-800">
-          <h3 class="text-xl font-semibold text-slate-900 dark:text-white">Size vs. age plots</h3>
-          <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">Go beyond the treemap. Cross-reference file size with age to isolate forgotten archives.</p>
+        <div class="flex gap-5 md:gap-6 py-8 border-t border-slate-200 dark:border-slate-800">
+          <div class="shrink-0 mt-1 text-blue-600 dark:text-blue-400"><svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
+  <path d="m9 12 2 2 4-4" /></svg></div>
+          <div class="grid md:grid-cols-[15rem_1fr] gap-x-10 gap-y-2 flex-1">
+            <h3 class="text-xl font-semibold text-slate-900 dark:text-white">User-mode scans</h3>
+            <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">Runs fast without admin elevation, with read-only access to the file system.</p>
+          </div>
         </div>
-        <div class="grid md:grid-cols-[16rem_1fr] gap-x-10 gap-y-2 py-8 border-t border-slate-200 dark:border-slate-800">
-          <h3 class="text-xl font-semibold text-slate-900 dark:text-white">No admin rights</h3>
-          <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">Runs fast without elevation, with read-only access to the file system.</p>
+        <div class="flex gap-5 md:gap-6 py-8 border-t border-slate-200 dark:border-slate-800">
+          <div class="shrink-0 mt-1 text-blue-600 dark:text-blue-400"><svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z" />
+  <path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12" />
+  <path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17" /></svg></div>
+          <div class="grid md:grid-cols-[15rem_1fr] gap-x-10 gap-y-2 flex-1">
+            <h3 class="text-xl font-semibold text-slate-900 dark:text-white">Space map and file types</h3>
+            <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">A treemap of what fills the disk, plus a breakdown by file type.</p>
+          </div>
         </div>
-        <div class="grid md:grid-cols-[16rem_1fr] gap-x-10 gap-y-2 py-8 border-t border-slate-200 dark:border-slate-800">
-          <h3 class="text-xl font-semibold text-slate-900 dark:text-white">Windows, macOS, Linux</h3>
-          <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">Optimized for Windows, and runs natively on macOS and Linux, on x86_64 and ARM64.</p>
+        <div class="flex gap-5 md:gap-6 py-8 border-t border-slate-200 dark:border-slate-800">
+          <div class="shrink-0 mt-1 text-blue-600 dark:text-blue-400"><svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2" /></svg></div>
+          <div class="grid md:grid-cols-[15rem_1fr] gap-x-10 gap-y-2 flex-1">
+            <h3 class="text-xl font-semibold text-slate-900 dark:text-white">Careful cleanup</h3>
+            <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">Open items in your file manager, or move clutter to the Trash behind confirmation prompts and safety checks.</p>
+          </div>
         </div>
-        <div class="grid md:grid-cols-[16rem_1fr] gap-x-10 gap-y-2 py-8 border-t border-slate-200 dark:border-slate-800">
-          <h3 class="text-xl font-semibold text-slate-900 dark:text-white">Careful cleanup</h3>
-          <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">Open items in your file manager, or move clutter to the Trash behind confirmation prompts and safety checks.</p>
-        </div>
-        <div class="grid md:grid-cols-[16rem_1fr] gap-x-10 gap-y-2 py-8 border-t border-slate-200 dark:border-slate-800">
-          <h3 class="text-xl font-semibold text-slate-900 dark:text-white">Reports</h3>
-          <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">Export point-in-time storage breakdowns to text files, to audit space and track growth.</p>
-        </div>
-        <div class="grid md:grid-cols-[16rem_1fr] gap-x-10 gap-y-2 py-8 border-t border-slate-200 dark:border-slate-800">
-          <h3 class="text-xl font-semibold text-slate-900 dark:text-white">Modest memory</h3>
-          <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">Written in Rust. About 300 MB of RAM for 1.2M+ files, including the interface.</p>
+        <div class="flex gap-5 md:gap-6 py-8 border-t border-slate-200 dark:border-slate-800">
+          <div class="shrink-0 mt-1 text-blue-600 dark:text-blue-400"><svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" />
+  <path d="M14 2v5a1 1 0 0 0 1 1h5" />
+  <path d="M10 9H8" />
+  <path d="M16 13H8" />
+  <path d="M16 17H8" /></svg></div>
+          <div class="grid md:grid-cols-[15rem_1fr] gap-x-10 gap-y-2 flex-1">
+            <h3 class="text-xl font-semibold text-slate-900 dark:text-white">Reports</h3>
+            <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">Export point-in-time storage breakdowns to text files, to audit space and track growth.</p>
+          </div>
         </div>
       </div>
     </section>

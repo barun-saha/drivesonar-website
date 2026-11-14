@@ -16,4 +16,4 @@ Drive Sonar is an Open-Source software (Apache-2.0 license).
 
 ## Useful Links
 - [Official Website](https://drivesonar.download)
-- [Snap Store Package](https://snapcraft.io/drive-sonar)
+- [Snap Store Package](https://snapcraft.io/drivesonar)
