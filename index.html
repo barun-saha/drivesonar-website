@@ -78,6 +78,15 @@
       animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
     }
 
+
+    .bench-bar { width: 0; transition: width 1.1s cubic-bezier(0.16, 1, 0.3, 1); }
+    .bench-range { opacity: 0; transition: opacity 0.4s ease 0.9s; }
+    .in-view .bench-bar { width: var(--w); }
+    .in-view .bench-range { opacity: 1; }
+    @media (prefers-reduced-motion: reduce) {
+      .bench-bar, .bench-range { transition: none; }
+    }
+
     .terminal-cmd-text {
       font-size: 0.8125rem;
       line-height: 1.6;
@@ -325,6 +334,7 @@
 
       <!-- Desktop Navigation -->
       <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600 dark:text-slate-400" aria-label="Desktop Navigation">
+        <a href="#install" class="hover:text-blue-600 dark:hover:text-slate-100 transition-colors">Install</a>
         <a href="#features" class="hover:text-blue-600 dark:hover:text-slate-100 transition-colors">Features</a>
         <a href="#comparison" class="hover:text-blue-600 dark:hover:text-slate-100 transition-colors">Benchmarks</a>
         <a href="#faq" class="hover:text-blue-600 dark:hover:text-slate-100 transition-colors">FAQ</a>
@@ -365,6 +375,7 @@
 
     <!-- Mobile Drawer -->
     <div id="mobile-menu" class="hidden md:hidden border-b border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-950/95 px-6 py-4 space-y-3">
+      <a href="#install" class="block text-slate-700 dark:text-slate-300 font-medium py-1.5" onclick="toggleMenu()">Install</a>
       <a href="#features" class="block text-slate-700 dark:text-slate-300 font-medium py-1.5" onclick="toggleMenu()">Features</a>
       <a href="#comparison" class="block text-slate-700 dark:text-slate-300 font-medium py-1.5" onclick="toggleMenu()">Benchmarks</a>
       <a href="#faq" class="block text-slate-700 dark:text-slate-300 font-medium py-1.5" onclick="toggleMenu()">FAQ</a>
@@ -390,17 +401,17 @@
       <div class="max-w-4xl mx-auto relative z-10">
         <!-- Badge -->
         <div class="animate-fade-in-up inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-sm text-blue-600 dark:text-blue-400 font-semibold uppercase tracking-wider mb-8 transition-transform hover:scale-105 duration-300">
-          <span>⚡ Fast, Light, User-Mode</span>
+          <span>Admin-mode speed. No admin rights.</span>
         </div>
 
         <!-- Main Heading -->
         <h1 class="animate-fade-in-up [animation-delay:200ms] text-4xl sm:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.15] mb-6">
-          Find where your space went with <span class="bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 bg-clip-text text-transparent">clarity and speed</span>
+          Find where your space went with <span class="text-blue-600 dark:text-blue-400">clarity and speed</span>
         </h1>
 
         <!-- Subtitle -->
         <p class="animate-fade-in-up [animation-delay:400ms] text-lg sm:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed mb-10 font-normal">
-          A lightweight, cross-platform approach to disk usage analytics. Scan millions of items quickly <em>without</em> administrator rights — with minimal memory overhead and multidimensional age analysis.
+          Cold scan of 1.2M+ files: <strong class="font-semibold text-slate-900 dark:text-white">10.7 s</strong> without admin rights, against 13.7 s for WizTree in admin mode and 23.4 s for WinDirStat. Plus size-vs-age plots, on Windows, macOS and Linux.
         </p>
 
         <!-- Call to Actions -->
@@ -432,7 +443,7 @@
 
             <!-- Windows -->
             <div class="flex flex-wrap items-center justify-center gap-3 mb-6">
-              <span class="text-sm font-semibold text-slate-700 dark:text-slate-300">🪟 Windows</span>
+              <span class="text-sm font-semibold text-slate-700 dark:text-slate-300 inline-flex items-center gap-2"><svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.4 10.4 4.4v6.8H3zM11.4 4.25 21 3v8.2h-9.6zM3 12.2h7.4v6.8L3 18zM11.4 12.2H21V21l-9.6-1.3z"/></svg>Windows</span>
               <a href="https://github.com/barun-saha/drive-sonar/releases/download/v0.10.0/Drive.Sonar_0.10.0_x64-setup.exe"
                  class="text-sm font-medium text-blue-600 dark:text-blue-400 bg-blue-500/5 hover:bg-blue-500/10 border border-slate-200 dark:border-slate-800 hover:border-blue-500/40 px-3 py-1.5 rounded-lg transition-colors">
                 Installer (.exe)
@@ -441,7 +452,7 @@
 
             <!-- Linux -->
             <div class="flex flex-wrap items-center justify-center gap-3 mb-6">
-              <span class="text-sm font-semibold text-slate-700 dark:text-slate-300">🐧 Linux</span>
+              <span class="text-sm font-semibold text-slate-700 dark:text-slate-300 inline-flex items-center gap-2"><svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.504 0c-.155 0-.315.008-.48.021-4.226.333-3.105 4.807-3.17 6.298-.076 1.092-.3 1.953-1.05 3.02-.885 1.051-2.127 2.75-2.716 4.521-.278.832-.41 1.684-.287 2.489a.424.424 0 00-.11.135c-.26.268-.45.6-.663.839-.199.199-.485.267-.797.4-.313.136-.658.269-.864.68-.09.189-.136.394-.132.602 0 .199.027.4.055.536.058.399.116.728.04.97-.249.68-.28 1.145-.106 1.484.174.334.535.47.94.601.81.2 1.91.135 2.774.6.926.466 1.866.67 2.616.47.526-.116.97-.464 1.208-.946.587-.003 1.23-.269 2.26-.334.699-.058 1.574.267 2.577.2.025.134.063.198.114.333l.003.003c.391.778 1.113 1.132 1.884 1.071.771-.06 1.592-.536 2.257-1.306.631-.765 1.683-1.084 2.378-1.503.348-.199.629-.469.649-.853.023-.4-.2-.811-.714-1.376v-.097l-.003-.003c-.17-.2-.25-.535-.338-.926-.085-.401-.182-.786-.492-1.046h-.003c-.059-.054-.123-.067-.188-.135a.357.357 0 00-.19-.064c.431-1.278.264-2.55-.173-3.694-.533-1.41-1.465-2.638-2.175-3.483-.796-1.005-1.576-1.957-1.56-3.368.026-2.152.236-6.133-3.544-6.139zm.529 3.405h.013c.213 0 .396.062.584.198.19.135.33.332.438.533.105.259.158.459.166.724 0-.02.006-.04.006-.06v.105a.086.086 0 01-.004-.021l-.004-.024a1.807 1.807 0 01-.15.706.953.953 0 01-.213.335.71.71 0 00-.088-.042c-.104-.045-.198-.064-.284-.133a1.312 1.312 0 00-.22-.066c.05-.06.146-.133.183-.198.053-.128.082-.264.088-.402v-.02a1.21 1.21 0 00-.061-.4c-.045-.134-.101-.2-.183-.333-.084-.066-.167-.132-.267-.132h-.016c-.093 0-.176.03-.262.132a.8.8 0 00-.205.334 1.18 1.18 0 00-.09.4v.019c.002.089.008.179.02.267-.193-.067-.438-.135-.607-.202a1.635 1.635 0 01-.018-.2v-.02a1.772 1.772 0 01.15-.768c.082-.22.232-.406.43-.533a.985.985 0 01.594-.2zm-2.962.059h.036c.142 0 .27.048.399.135.146.129.264.288.344.465.09.199.14.4.153.667v.004c.007.134.006.2-.002.266v.08c-.03.007-.056.018-.083.024-.152.055-.274.135-.393.2.012-.09.013-.18.003-.267v-.015c-.012-.133-.04-.2-.082-.333a.613.613 0 00-.166-.267.248.248 0 00-.183-.064h-.021c-.071.006-.13.04-.186.132a.552.552 0 00-.12.27.944.944 0 00-.023.33v.015c.012.135.037.2.08.334.046.134.098.2.166.268.01.009.02.018.034.024-.07.057-.117.07-.176.136a.304.304 0 01-.131.068 2.62 2.62 0 01-.275-.402 1.772 1.772 0 01-.155-.667 1.759 1.759 0 01.08-.668 1.43 1.43 0 01.283-.535c.128-.133.26-.2.418-.2zm1.37 1.706c.332 0 .733.065 1.216.399.293.2.523.269 1.052.468h.003c.255.136.405.266.478.399v-.131a.571.571 0 01.016.47c-.123.31-.516.643-1.063.842v.002c-.268.135-.501.333-.775.465-.276.135-.588.292-1.012.267a1.139 1.139 0 01-.448-.067 3.566 3.566 0 01-.322-.198c-.195-.135-.363-.332-.612-.465v-.005h-.005c-.4-.246-.616-.512-.686-.71-.07-.268-.005-.47.193-.6.224-.135.38-.271.483-.336.104-.074.143-.102.176-.131h.002v-.003c.169-.202.436-.47.839-.601.139-.036.294-.065.466-.065zm2.8 2.142c.358 1.417 1.196 3.475 1.735 4.473.286.534.855 1.659 1.102 3.024.156-.005.33.018.513.064.646-1.671-.546-3.467-1.089-3.966-.22-.2-.232-.335-.123-.335.59.534 1.365 1.572 1.646 2.757.13.535.16 1.104.021 1.67.067.028.135.06.205.067 1.032.534 1.413.938 1.23 1.537v-.043c-.06-.003-.12 0-.18 0h-.016c.151-.467-.182-.825-1.065-1.224-.915-.4-1.646-.336-1.77.465-.008.043-.013.066-.018.135-.068.023-.139.053-.209.064-.43.268-.662.669-.793 1.187-.13.533-.17 1.156-.205 1.869v.003c-.02.334-.17.838-.319 1.35-1.5 1.072-3.58 1.538-5.348.334a2.645 2.645 0 00-.402-.533 1.45 1.45 0 00-.275-.333c.182 0 .338-.03.465-.067a.615.615 0 00.314-.334c.108-.267 0-.697-.345-1.163-.345-.467-.931-.995-1.788-1.521-.63-.4-.986-.87-1.15-1.396-.165-.534-.143-1.085-.015-1.645.245-1.07.873-2.11 1.274-2.763.107-.065.037.135-.408.974-.396.751-1.14 2.497-.122 3.854a8.123 8.123 0 01.647-2.876c.564-1.278 1.743-3.504 1.836-5.268.048.036.217.135.289.202.218.133.38.333.59.465.21.201.477.335.876.335.039.003.075.006.11.006.412 0 .73-.134.997-.268.29-.134.52-.334.74-.4h.005c.467-.135.835-.402 1.044-.7zm2.185 8.958c.037.6.343 1.245.882 1.377.588.134 1.434-.333 1.791-.765l.211-.01c.315-.007.577.01.847.268l.003.003c.208.199.305.53.391.876.085.4.154.78.409 1.066.486.527.645.906.636 1.14l.003-.007v.018l-.003-.012c-.015.262-.185.396-.498.595-.63.401-1.746.712-2.457 1.57-.618.737-1.37 1.14-2.036 1.191-.664.053-1.237-.2-1.574-.898l-.005-.003c-.21-.4-.12-1.025.056-1.69.176-.668.428-1.344.463-1.897.037-.714.076-1.335.195-1.814.12-.465.308-.797.641-.984l.045-.022zm-10.814.049h.01c.053 0 .105.005.157.014.376.055.706.333 1.023.752l.91 1.664.003.003c.243.533.754 1.064 1.189 1.637.434.598.77 1.131.729 1.57v.006c-.057.744-.48 1.148-1.125 1.294-.645.135-1.52.002-2.395-.464-.968-.536-2.118-.469-2.857-.602-.369-.066-.61-.2-.723-.4-.11-.2-.113-.602.123-1.23v-.004l.002-.003c.117-.334.03-.752-.027-1.118-.055-.401-.083-.71.043-.94.16-.334.396-.4.69-.533.294-.135.64-.202.915-.47h.002v-.002c.256-.268.445-.601.668-.838.19-.201.38-.336.663-.336zm7.159-9.074c-.435.201-.945.535-1.488.535-.542 0-.97-.267-1.28-.466-.154-.134-.28-.268-.373-.335-.164-.134-.144-.333-.074-.333.109.016.129.134.199.2.096.066.215.2.36.333.292.2.68.467 1.167.467.485 0 1.053-.267 1.398-.466.195-.135.445-.334.648-.467.156-.136.149-.267.279-.267.128.016.034.134-.147.332a8.097 8.097 0 01-.69.468zm-1.082-1.583V5.64c-.006-.02.013-.042.029-.05.074-.043.18-.027.26.004.063 0 .16.067.15.135-.006.049-.085.066-.135.066-.055 0-.092-.043-.141-.068-.052-.018-.146-.008-.163-.065zm-.551 0c-.02.058-.113.049-.166.066-.047.025-.086.068-.14.068-.05 0-.13-.02-.136-.068-.01-.066.088-.133.15-.133.08-.031.184-.047.259-.005.019.009.036.03.03.05v.02h.003z"/></svg>Linux</span>
               <a href="https://github.com/barun-saha/drive-sonar/releases/download/v0.10.0/Drive.Sonar_0.10.0_amd64.deb"
                  class="text-sm font-medium text-blue-600 dark:text-blue-400 bg-blue-500/5 hover:bg-blue-500/10 border border-slate-200 dark:border-slate-800 hover:border-blue-500/40 px-3.5 py-1.5 rounded-lg transition-colors">
                 Debian / Ubuntu (.deb)
@@ -458,7 +469,7 @@
 
             <!-- macOS -->
             <div class="flex flex-wrap items-center justify-center gap-3 mb-6">
-              <span class="text-sm font-semibold text-slate-700 dark:text-slate-300">🍏 macOS</span>
+              <span class="text-sm font-semibold text-slate-700 dark:text-slate-300 inline-flex items-center gap-2"><svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>macOS</span>
               <a href="https://github.com/barun-saha/drive-sonar/releases/download/v0.10.0/Drive.Sonar_0.10.0_aarch64.dmg"
                  class="text-sm font-medium text-blue-600 dark:text-blue-400 bg-blue-500/5 hover:bg-blue-500/10 border border-slate-200 dark:border-slate-800 hover:border-blue-500/40 px-3.5 py-1.5 rounded-lg transition-colors">
                 Apple Silicon (.dmg)
@@ -476,30 +487,79 @@
         </div>
       </div>
 
-      <!-- Demo Video Container -->
-      <div class="animate-fade-in-up [animation-delay:600ms] max-w-5xl mx-auto mb-12 relative z-10">
-        <div class="relative w-full aspect-video rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-2xl shadow-slate-950/20 dark:shadow-blue-950/30 bg-slate-900">
-          <iframe 
-            src="https://www.youtube-nocookie.com/embed/mGdI-Px6GYE" 
-            title="Drive Sonar Live Demo Video" 
-            class="w-full h-full border-0"
-            loading="lazy"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen>
-          </iframe>
+      <!-- Media Carousel: demo video + screenshots -->
+      <div id="carousel" class="animate-fade-in-up [animation-delay:600ms] max-w-5xl mx-auto relative z-10 text-left" role="region" aria-roledescription="carousel" aria-label="Drive Sonar demo video and screenshots">
+        <div class="relative rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-2xl shadow-slate-950/20 dark:shadow-blue-950/30 bg-slate-900">
+          <div id="carousel-track" class="flex transition-transform duration-500 ease-out motion-reduce:transition-none">
+            <div class="carousel-slide w-full shrink-0 aspect-video" role="group" aria-roledescription="slide" aria-label="1 of 2: demo video">
+              <iframe
+                src="https://www.youtube-nocookie.com/embed/mGdI-Px6GYE?enablejsapi=1"
+                title="Drive Sonar demo video"
+                class="w-full h-full border-0"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+              </iframe>
+            </div>
+            <div class="carousel-slide w-full shrink-0 aspect-video bg-slate-950" role="group" aria-roledescription="slide" aria-label="2 of 2: Age Analysis screenshot">
+              <img
+                src="/media/screenshot.png"
+                alt="Drive Sonar Age Analysis tab: a size-versus-age scatter plot of the largest files in a folder, next to the folder listing"
+                class="w-full h-full object-contain"
+                width="1917"
+                height="1078"
+                loading="lazy"
+              />
+            </div>
+          </div>
+          <button type="button" id="carousel-prev" class="absolute top-1/2 -translate-y-1/2 z-10 inline-flex items-center justify-center w-11 h-11 rounded-full bg-slate-950/70 hover:bg-slate-950/90 text-white border border-white/15 backdrop-blur-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400 left-3" aria-label="Previous slide"><svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6" /></svg></button>
+          <button type="button" id="carousel-next" class="absolute top-1/2 -translate-y-1/2 z-10 inline-flex items-center justify-center w-11 h-11 rounded-full bg-slate-950/70 hover:bg-slate-950/90 text-white border border-white/15 backdrop-blur-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400 right-3" aria-label="Next slide"><svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg></button>
+        </div>
+        <div class="flex items-center justify-center gap-2.5 mt-5" role="tablist" aria-label="Choose slide">
+          <button type="button" role="tab" class="carousel-dot w-2.5 h-2.5 rounded-full transition-colors" data-slide="0" aria-label="Show demo video"></button>
+          <button type="button" role="tab" class="carousel-dot w-2.5 h-2.5 rounded-full transition-colors" data-slide="1" aria-label="Show Age Analysis screenshot"></button>
         </div>
       </div>
+    </section>
 
-      <!-- Screenshot Preview -->
-      <div class="animate-fade-in-up [animation-delay:650ms] max-w-6xl mx-auto">
-        <img
-          src="/media/screenshot.png"
-          alt="Drive Sonar application screenshot"
-          class="w-full h-auto rounded-xl border border-slate-800 shadow-2xl shadow-slate-950/20 dark:shadow-blue-950/30 transition-all duration-500 hover:border-slate-700"
-          width="1200"
-          height="750"
-          loading="lazy"
-        />
+    <!-- Why Drive Sonar exists -->
+    <section id="why" class="py-20 px-6 max-w-5xl mx-auto border-t border-slate-200 dark:border-slate-900">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white mb-6">Why I built it</h2>
+          <p class="text-lg text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+            My pain point was simple: Windows had no insightful disk usage analyzer with <code class="font-mono text-base">ncdu</code>-style minimalism that also runs without admin privileges.
+          </p>
+          <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+            Every time I hit a space crisis, the native storage settings left me confused about what was actually taking up the disk.
+          </p>
+          <p class="text-sm text-slate-500 dark:text-slate-400">&mdash; Barun Saha, author of Drive Sonar</p>
+        </div>
+
+        <figure class="m-0">
+          <div class="flex flex-wrap gap-x-5 gap-y-1 mb-3 text-sm text-slate-600 dark:text-slate-300">
+            <span class="inline-flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-blue-400 dark:bg-blue-300"></span>Recent (up to 6 mo)</span>
+            <span class="inline-flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-amber-600 dark:bg-amber-500"></span>Aging (6&ndash;24 mo)</span>
+            <span class="inline-flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-rose-700 dark:bg-rose-400"></span>Old (over 24 mo)</span>
+          </div>
+          <svg viewBox="0 0 400 290" class="w-full h-auto" role="img" aria-labelledby="why-fig-title">
+            <title id="why-fig-title">Sketch of the Age Analysis plot: file size on a log scale against age in months. Dashed lines at 6 and 24 months split files into recent, aging and old; one large file sits far to the right in the old zone.</title>
+            <rect x="190.4" y="20" width="189.6" height="216" class="fill-rose-500/5"></rect>
+            <line x1="64" x2="380" y1="193.0" y2="193.0" class="stroke-slate-200 dark:stroke-slate-800" stroke-width="1"></line><text x="56" y="197.0" text-anchor="end" class="fill-slate-500 dark:fill-slate-400" font-size="11">0.5</text><line x1="64" x2="380" y1="160.5" y2="160.5" class="stroke-slate-200 dark:stroke-slate-800" stroke-width="1"></line><text x="56" y="164.5" text-anchor="end" class="fill-slate-500 dark:fill-slate-400" font-size="11">1</text><line x1="64" x2="380" y1="128.0" y2="128.0" class="stroke-slate-200 dark:stroke-slate-800" stroke-width="1"></line><text x="56" y="132.0" text-anchor="end" class="fill-slate-500 dark:fill-slate-400" font-size="11">2</text><line x1="64" x2="380" y1="85.0" y2="85.0" class="stroke-slate-200 dark:stroke-slate-800" stroke-width="1"></line><text x="56" y="89.0" text-anchor="end" class="fill-slate-500 dark:fill-slate-400" font-size="11">5</text><line x1="64" x2="380" y1="52.5" y2="52.5" class="stroke-slate-200 dark:stroke-slate-800" stroke-width="1"></line><text x="56" y="56.5" text-anchor="end" class="fill-slate-500 dark:fill-slate-400" font-size="11">10</text><line x1="64" x2="380" y1="20.0" y2="20.0" class="stroke-slate-200 dark:stroke-slate-800" stroke-width="1"></line><text x="56" y="24.0" text-anchor="end" class="fill-slate-500 dark:fill-slate-400" font-size="11">20</text>
+            <line x1="95.6" x2="95.6" y1="20" y2="236" class="stroke-slate-400 dark:stroke-slate-500" stroke-width="1.5" stroke-dasharray="4 4"></line>
+            <line x1="190.4" x2="190.4" y1="20" y2="236" class="stroke-slate-400 dark:stroke-slate-500" stroke-width="1.5" stroke-dasharray="4 4"></line>
+            <text x="99.6" y="230" class="fill-slate-500 dark:fill-slate-400" font-size="11">6 mo</text>
+            <text x="194.4" y="230" class="fill-slate-500 dark:fill-slate-400" font-size="11">24 mo</text>
+            <path d="M64 20V236H380" fill="none" class="stroke-slate-400 dark:stroke-slate-600" stroke-width="1.5"></path>
+            <circle cx="68.2" cy="188.6" r="4" class="fill-blue-400 dark:fill-blue-300"></circle><circle cx="71.9" cy="177.2" r="4" class="fill-blue-400 dark:fill-blue-300"></circle><circle cx="75.6" cy="193.0" r="4" class="fill-blue-400 dark:fill-blue-300"></circle><circle cx="79.8" cy="160.5" r="4" class="fill-blue-400 dark:fill-blue-300"></circle><circle cx="85.1" cy="184.5" r="4" class="fill-blue-400 dark:fill-blue-300"></circle><circle cx="90.3" cy="165.5" r="4" class="fill-blue-400 dark:fill-blue-300"></circle><circle cx="93.0" cy="198.0" r="4" class="fill-blue-400 dark:fill-blue-300"></circle>
+            <circle cx="100.9" cy="177.2" r="4" class="fill-amber-600 dark:fill-amber-500"></circle><circle cx="108.8" cy="156.0" r="4" class="fill-amber-600 dark:fill-amber-500"></circle><circle cx="116.7" cy="184.5" r="4" class="fill-amber-600 dark:fill-amber-500"></circle><circle cx="127.2" cy="165.5" r="4" class="fill-amber-600 dark:fill-amber-500"></circle><circle cx="143.0" cy="193.0" r="4" class="fill-amber-600 dark:fill-amber-500"></circle><circle cx="158.8" cy="198.0" r="4" class="fill-amber-600 dark:fill-amber-500"></circle><circle cx="174.6" cy="184.5" r="4" class="fill-amber-600 dark:fill-amber-500"></circle><circle cx="179.9" cy="36.7" r="4" class="fill-amber-600 dark:fill-amber-500"></circle><circle cx="187.8" cy="141.5" r="4" class="fill-amber-600 dark:fill-amber-500"></circle>
+            <circle cx="306.3" cy="152.0" r="5" class="fill-rose-700 dark:fill-rose-400"></circle>
+            <text x="64.0" y="254" text-anchor="middle" class="fill-slate-500 dark:fill-slate-400" font-size="11">0</text><text x="143.0" y="254" text-anchor="middle" class="fill-slate-500 dark:fill-slate-400" font-size="11">15</text><text x="222.0" y="254" text-anchor="middle" class="fill-slate-500 dark:fill-slate-400" font-size="11">30</text><text x="301.0" y="254" text-anchor="middle" class="fill-slate-500 dark:fill-slate-400" font-size="11">45</text><text x="380.0" y="254" text-anchor="middle" class="fill-slate-500 dark:fill-slate-400" font-size="11">60</text>
+            <text x="222.0" y="282" text-anchor="middle" class="fill-slate-500 dark:fill-slate-400" font-size="12">Age (months since modified)</text>
+            <text transform="translate(13 128.0) rotate(-90)" text-anchor="middle" class="fill-slate-500 dark:fill-slate-400" font-size="12">Size (MB, log scale)</text>
+          </svg>
+          <figcaption class="mt-3 text-sm text-slate-500 dark:text-slate-400">Each dot is a file. Plotting size against age separates forgotten archives from files you still use.</figcaption>
+        </figure>
       </div>
     </section>
 
@@ -522,22 +582,22 @@
           <!-- OS Tabs -->
           <div class="flex items-center gap-1 sm:gap-2 overflow-x-auto scrollbar-none pb-px" id="os-tabs">
             <button onclick="selectOs('winget')" id="tab-winget" class="os-tab active-tab px-4 py-2.5 text-sm sm:text-base font-semibold rounded-t-lg transition-colors border-b-2 border-blue-500 text-blue-400 bg-slate-900/80 whitespace-nowrap">
-              🪟 Windows (winget)
+              <span class="inline-flex items-center gap-2"><svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.4 10.4 4.4v6.8H3zM11.4 4.25 21 3v8.2h-9.6zM3 12.2h7.4v6.8L3 18zM11.4 12.2H21V21l-9.6-1.3z"/></svg>Windows (winget)</span>
             </button>
             <button onclick="selectOs('choco')" id="tab-choco" class="os-tab px-4 py-2.5 text-sm sm:text-base font-semibold rounded-t-lg transition-colors border-b-2 border-transparent text-slate-400 hover:text-slate-200 whitespace-nowrap">
-              🍫 Windows (Choco)
+              <span class="inline-flex items-center gap-2"><svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M0 1.249l1.439 3.18L0 6.926l1.439 2.5L0 11.923l1.439 2.424L0 16.845l1.439 2.5L0 22.75l2.8-.91c6.3.01 12.696.006 18.096 0l3.104.91-2.044-3.635 1.136-1.892-2.196-2.272-.004-.017V2.005c-6.551-.001-12.243 0-18.091 0zm19.688 1.968v7.03l-.23-.898-1.438-4.39-3.56.605-1.89-2.343zm-11.695.004h4.563L9.539 4.428zm2.86 3.68a3.903 3.903 0 0 1 1.64.254c1.968.757 1.286 2.8.15 4.012-.378.378-1.21.227-.605-.908.228-.454.454-1.363-.227-1.59-1.515-.53-3.255.682-3.634 2.271-.378 1.363.606 2.801 2.347 2.423 1.439-.303 2.802-1.288 3.332-1.742.53-.455.907.38.301 1.288-.68.908-1.74 1.968-2.65 2.574-3.558 2.423-6.662-.758-5.375-4.392.677-1.845 2.454-4.041 4.72-4.19zm6.527 2.031a.66.66 0 0 1 .454.182c.324.326.204.972-.268 1.445-.473.474-1.121.593-1.446.268-.325-.326-.205-.972.267-1.445.292-.292.666-.461.993-.45zm-.42 3.233a.66.66 0 0 1 .454.182c.325.325.206.973-.268 1.446-.473.473-1.12.592-1.445.268-.324-.326-.205-.972.268-1.445.291-.292.664-.462.99-.451Z"/></svg>Windows (Choco)</span>
             </button>
             <button onclick="selectOs('macos')" id="tab-macos" class="os-tab px-4 py-2.5 text-sm sm:text-base font-semibold rounded-t-lg transition-colors border-b-2 border-transparent text-slate-400 hover:text-slate-200 whitespace-nowrap">
-              🍏 macOS (.dmg)
+              <span class="inline-flex items-center gap-2"><svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>macOS (.dmg)</span>
             </button>
             <button onclick="selectOs('debian')" id="tab-debian" class="os-tab px-4 py-2.5 text-sm sm:text-base font-semibold rounded-t-lg transition-colors border-b-2 border-transparent text-slate-400 hover:text-slate-200 whitespace-nowrap">
-              🐧 Debian / Ubuntu (.deb)
+              <span class="inline-flex items-center gap-2"><svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.88 12.685c-.4 0 .08.2.601.28.14-.1.27-.22.39-.33a3.001 3.001 0 01-.99.05m2.14-.53c.23-.33.4-.69.47-1.06-.06.27-.2.5-.33.73-.75.47-.07-.27 0-.56-.8 1.01-.11.6-.14.89m.781-2.05c.05-.721-.14-.501-.2-.221.07.04.13.5.2.22M12.38.31c.2.04.45.07.42.12.23-.05.28-.1-.43-.12m.43.12l-.15.03.14-.01V.43m6.633 9.944c.02.64-.2.95-.38 1.5l-.35.181c-.28.54.03.35-.17.78-.44.39-1.34 1.22-1.62 1.301-.201 0 .14-.25.19-.34-.591.4-.481.6-1.371.85l-.03-.06c-2.221 1.04-5.303-1.02-5.253-3.842-.03.17-.07.13-.12.2a3.551 3.552 0 012.001-3.501 3.361 3.362 0 013.732.48 3.341 3.342 0 00-2.721-1.3c-1.18.01-2.281.76-2.651 1.57-.6.38-.67 1.47-.93 1.661-.361 2.601.66 3.722 2.38 5.042.27.19.08.21.12.35a4.702 4.702 0 01-1.53-1.16c.23.33.47.66.8.91-.55-.18-1.27-1.3-1.48-1.35.93 1.66 3.78 2.921 5.261 2.3a6.203 6.203 0 01-2.33-.28c-.33-.16-.77-.51-.7-.57a5.802 5.803 0 005.902-.84c.44-.35.93-.94 1.07-.95-.2.32.04.16-.12.44.44-.72-.2-.3.46-1.24l.24.33c-.09-.6.74-1.321.66-2.262.19-.3.2.3 0 .97.29-.74.08-.85.15-1.46.08.2.18.42.23.63-.18-.7.2-1.2.28-1.6-.09-.05-.28.3-.32-.53 0-.37.1-.2.14-.28-.08-.05-.26-.32-.38-.861.08-.13.22.33.34.34-.08-.42-.2-.75-.2-1.08-.34-.68-.12.1-.4-.3-.34-1.091.3-.25.34-.74.54.77.84 1.96.981 2.46-.1-.6-.28-1.2-.49-1.76.16.07-.26-1.241.21-.37A7.823 7.824 0 0017.702 1.6c.18.17.42.39.33.42-.75-.45-.62-.48-.73-.67-.61-.25-.65.02-1.06 0C15.082.73 14.862.8 13.8.4l.05.23c-.77-.25-.9.1-1.73 0-.05-.04.27-.14.53-.18-.741.1-.701-.14-1.431.03.17-.13.36-.21.55-.32-.6.04-1.44.35-1.18.07C9.6.68 7.847 1.3 6.867 2.22L6.838 2c-.45.54-1.96 1.611-2.08 2.311l-.131.03c-.23.4-.38.85-.57 1.261-.3.52-.45.2-.4.28-.6 1.22-.9 2.251-1.16 3.102.18.27 0 1.65.07 2.76-.3 5.463 3.84 10.776 8.363 12.006.67.23 1.65.23 2.49.25-.99-.28-1.12-.15-2.08-.49-.7-.32-.85-.7-1.34-1.13l.2.35c-.971-.34-.57-.42-1.361-.67l.21-.27c-.31-.03-.83-.53-.97-.81l-.34.01c-.41-.501-.63-.871-.61-1.161l-.111.2c-.13-.21-1.52-1.901-.8-1.511-.13-.12-.31-.2-.5-.55l.14-.17c-.35-.44-.64-1.02-.62-1.2.2.24.32.3.45.33-.88-2.172-.93-.12-1.601-2.202l.15-.02c-.1-.16-.18-.34-.26-.51l.06-.6c-.63-.74-.18-3.102-.09-4.402.07-.54.53-1.1.88-1.981l-.21-.04c.4-.71 2.341-2.872 3.241-2.761.43-.55-.09 0-.18-.14.96-.991 1.26-.7 1.901-.88.7-.401-.6.16-.27-.151 1.2-.3.85-.7 2.421-.85.16.1-.39.14-.52.26 1-.49 3.151-.37 4.562.27 1.63.77 3.461 3.011 3.531 5.132l.08.02c-.04.85.13 1.821-.17 2.711l.2-.42M9.54 13.236l-.05.28c.26.35.47.73.8 1.01-.24-.47-.42-.66-.75-1.3m.62-.02c-.14-.15-.22-.34-.31-.52.08.32.26.6.43.88l-.12-.36m10.945-2.382l-.07.15c-.1.76-.34 1.511-.69 2.212.4-.73.65-1.541.75-2.362M12.45.12c.27-.1.66-.05.95-.12-.37.03-.74.05-1.1.1l.15.02M3.006 5.142c.07.57-.43.8.11.42.3-.66-.11-.18-.1-.42m-.64 2.661c.12-.39.15-.62.2-.84-.35.44-.17.53-.2.83"/></svg>Debian / Ubuntu (.deb)</span>
             </button>
             <button onclick="selectOs('fedora')" id="tab-fedora" class="os-tab px-4 py-2.5 text-sm sm:text-base font-semibold rounded-t-lg transition-colors border-b-2 border-transparent text-slate-400 hover:text-slate-200 whitespace-nowrap">
-              🎩 Fedora / RHEL (.rpm)
+              <span class="inline-flex items-center gap-2"><svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.001 0C5.376 0 .008 5.369.004 11.992H.002v9.287h.002A2.726 2.726 0 0 0 2.73 24h9.275c6.626-.004 11.993-5.372 11.993-11.997C23.998 5.375 18.628 0 12 0zm2.431 4.94c2.015 0 3.917 1.543 3.917 3.671 0 .197.001.395-.03.619a1.002 1.002 0 0 1-1.137.893 1.002 1.002 0 0 1-.842-1.175 2.61 2.61 0 0 0 .013-.337c0-1.207-.987-1.672-1.92-1.672-.934 0-1.775.784-1.777 1.672.016 1.027 0 2.046 0 3.07l1.732-.012c1.352-.028 1.368 2.009.016 1.998l-1.748.013c-.004.826.006.677.002 1.093 0 0 .015 1.01-.016 1.776-.209 2.25-2.124 4.046-4.424 4.046-2.438 0-4.448-1.993-4.448-4.437.073-2.515 2.078-4.492 4.603-4.469l1.409-.01v1.996l-1.409.013h-.007c-1.388.04-2.577.984-2.6 2.47a2.438 2.438 0 0 0 2.452 2.439c1.356 0 2.441-.987 2.441-2.437l-.001-7.557c0-.14.005-.252.02-.407.23-1.848 1.883-3.256 3.754-3.256z"/></svg>Fedora / RHEL (.rpm)</span>
             </button>
             <button onclick="selectOs('appimage')" id="tab-appimage" class="os-tab px-4 py-2.5 text-sm sm:text-base font-semibold rounded-t-lg transition-colors border-b-2 border-transparent text-slate-400 hover:text-slate-200 whitespace-nowrap">
-              📦 AppImage (Universal)
+              <span class="inline-flex items-center gap-2"><svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M1.64 0C.735 0 0 .736 0 1.64v20.72C0 23.265.736 24 1.64 24h20.72c.904 0 1.64-.736 1.64-1.64V1.64C24 .735 23.264 0 22.36 0Zm8.56 2.42h3.6v3.6h1.912L12 10.22l-3.713-4.2H10.2Zm1.331 8.4h1.313c.103 0 .169.177.169.394v1.368c.417.096.81.266 1.162.488l.975-.975c.153-.153.32-.223.394-.15l.918.919c.074.073.004.24-.15.393l-.975.975c.223.352.393.745.488 1.163h1.369c.217 0 .394.065.394.169v1.312c0 .104-.177.169-.394.169h-1.369a3.74 3.74 0 0 1-.487 1.162l.974.975c.154.154.224.32.15.394l-.918.919c-.074.073-.24.003-.394-.15l-.975-.975a3.74 3.74 0 0 1-1.163.487v1.37c0 .216-.065.393-.168.393H11.53c-.103 0-.169-.177-.169-.394v-1.369a3.74 3.74 0 0 1-1.162-.487l-.975.975c-.153.153-.32.223-.394.15l-.918-.919c-.074-.073-.004-.24.15-.394l.974-.975a3.74 3.74 0 0 1-.487-1.162H7.181c-.217 0-.393-.065-.393-.169v-1.312c0-.104.176-.17.393-.17H8.55a3.74 3.74 0 0 1 .487-1.162l-.974-.975c-.154-.153-.224-.32-.15-.393l.918-.92c.074-.072.24-.002.394.15l.975.976a3.74 3.74 0 0 1 1.163-.488v-1.368c0-.217.065-.394.168-.394zm.656 3.731c-.917 0-1.668.752-1.668 1.669s.751 1.669 1.669 1.669c.917 0 1.668-.752 1.668-1.67 0-.916-.751-1.668-1.669-1.668z"/></svg>AppImage (Universal)</span>
             </button>
           </div>
 
@@ -596,48 +656,46 @@
       </div>
     </section>
 
-    <!-- Core Features Grid -->
-    <section id="features" class="py-20 px-6 max-w-6xl mx-auto border-t border-slate-200 dark:border-slate-900">
-      <div class="text-center max-w-2xl mx-auto mb-16">
-        <h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white mb-4">Engineered for efficiency and privacy</h2>
-        <p class="text-slate-600 dark:text-slate-400 text-base">Replaces slow legacy analyzers with a zero-telemetry, lightweight native architecture.</p>
-      </div>
+    <!-- Features -->
+    <section id="features" class="py-20 px-6 max-w-4xl mx-auto border-t border-slate-200 dark:border-slate-900">
+      <h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white mb-3">What it does</h2>
+      <p class="text-slate-600 dark:text-slate-400 text-lg mb-10">Open source, with no telemetry in the app.</p>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 p-8 rounded-2xl">
-          <div class="w-12 h-12 bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800/50 rounded-xl flex items-center justify-center text-blue-600 dark:text-blue-400 text-xl mb-6">📈</div>
-          <h3 class="text-xl font-semibold text-slate-900 dark:text-white mb-3">Multidimensional Plots</h3>
-          <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Go <em>beyond</em> treemap&mdash;cross-reference file sizes vs. age to isolate forgotten archives instantly.</p>
+      <div>
+        <div class="flex gap-5 md:gap-6 py-8 border-t border-slate-200 dark:border-slate-800">
+          <div class="shrink-0 mt-1 text-blue-600 dark:text-blue-400"><svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
+  <path d="m9 12 2 2 4-4" /></svg></div>
+          <div class="grid md:grid-cols-[15rem_1fr] gap-x-10 gap-y-2 flex-1">
+            <h3 class="text-xl font-semibold text-slate-900 dark:text-white">User-mode scans</h3>
+            <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">Runs fast without admin elevation, with read-only access to the file system.</p>
+          </div>
         </div>
-
-        <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out delay-150 bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 p-8 rounded-2xl">
-          <div class="w-12 h-12 bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800/50 rounded-xl flex items-center justify-center text-blue-600 dark:text-blue-400 text-xl mb-6">📂</div>
-          <h3 class="text-xl font-semibold text-slate-900 dark:text-white mb-3">Interactive Exploration</h3>
-          <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Browse items in your OS file manager, or safely move clutter to the Trash with confirmation protection and other <em>safety</em> checks.</p>
+        <div class="flex gap-5 md:gap-6 py-8 border-t border-slate-200 dark:border-slate-800">
+          <div class="shrink-0 mt-1 text-blue-600 dark:text-blue-400"><svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z" />
+  <path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12" />
+  <path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17" /></svg></div>
+          <div class="grid md:grid-cols-[15rem_1fr] gap-x-10 gap-y-2 flex-1">
+            <h3 class="text-xl font-semibold text-slate-900 dark:text-white">Space map, file types, age</h3>
+            <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">A treemap of what fills the disk, a breakdown by file type, and size-vs-age plots that surface large files untouched for years.</p>
+          </div>
         </div>
-
-        <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out delay-300 bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 p-8 rounded-2xl">
-          <div class="w-12 h-12 bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800/50 rounded-xl flex items-center justify-center text-blue-600 dark:text-blue-400 text-xl mb-6">📑</div>
-          <h3 class="text-xl font-semibold text-slate-900 dark:text-white mb-3">Detailed Reports</h3>
-          <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Export point-in-time storage breakdowns to text files for easy space <em>auditing</em> and tracking growth.</p>
+        <div class="flex gap-5 md:gap-6 py-8 border-t border-slate-200 dark:border-slate-800">
+          <div class="shrink-0 mt-1 text-blue-600 dark:text-blue-400"><svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2" /></svg></div>
+          <div class="grid md:grid-cols-[15rem_1fr] gap-x-10 gap-y-2 flex-1">
+            <h3 class="text-xl font-semibold text-slate-900 dark:text-white">Careful cleanup</h3>
+            <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">Open items in your file manager, or move clutter to the Trash behind confirmation prompts and safety checks.</p>
+          </div>
         </div>
-
-        <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 p-8 rounded-2xl">
-          <div class="w-12 h-12 bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800/50 rounded-xl flex items-center justify-center text-blue-600 dark:text-blue-400 text-xl mb-6">🔒</div>
-          <h3 class="text-xl font-semibold text-slate-900 dark:text-white mb-3">User-Mode Execution</h3>
-          <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Runs fast without administrator elevation, ensuring <em>safe</em>, read-only file system access.</p>
-        </div>
-
-        <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out delay-150 bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 p-8 rounded-2xl">
-          <div class="w-12 h-12 bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800/50 rounded-xl flex items-center justify-center text-blue-600 dark:text-blue-400 text-xl mb-6">💻</div>
-          <h3 class="text-xl font-semibold text-slate-900 dark:text-white mb-3">Cross-Platform Support</h3>
-          <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Optimized for Windows but also runs <em>natively</em> on macOS and Linux and supports different architectures.</p>
-        </div>
-
-        <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out delay-300 bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 p-8 rounded-2xl">
-          <div class="w-12 h-12 bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800/50 rounded-xl flex items-center justify-center text-blue-600 dark:text-blue-400 text-xl mb-6">⚡</div>
-          <h3 class="text-xl font-semibold text-slate-900 dark:text-white mb-3">Minimal Overhead</h3>
-          <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Built with Rust's speed and memory <em>optimizations</em>, using ~300 MB RAM when processing over 1.26M files.</p>
+        <div class="flex gap-5 md:gap-6 py-8 border-t border-slate-200 dark:border-slate-800">
+          <div class="shrink-0 mt-1 text-blue-600 dark:text-blue-400"><svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" />
+  <path d="M14 2v5a1 1 0 0 0 1 1h5" />
+  <path d="M10 9H8" />
+  <path d="M16 13H8" />
+  <path d="M16 17H8" /></svg></div>
+          <div class="grid md:grid-cols-[15rem_1fr] gap-x-10 gap-y-2 flex-1">
+            <h3 class="text-xl font-semibold text-slate-900 dark:text-white">Reports</h3>
+            <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">Export point-in-time storage breakdowns to text files, to audit space and track growth.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -651,6 +709,85 @@
         </p>
       </div>
 
+      <!-- Animated benchmark charts -->
+      <div class="grid md:grid-cols-2 gap-10 mb-10">
+        <div class="bench-chart" data-chart="cold">
+          <h3 class="text-lg font-semibold text-slate-900 dark:text-white">First scan <span class="text-sm font-normal text-slate-500 dark:text-slate-400">(cold scan) &middot; seconds, lower is better</span></h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 mb-4">The first scan after starting the computer. WizTree run in admin mode.</p>
+          <div class="grid grid-cols-[6.5rem_1fr_5rem] items-center gap-3 py-2" title="Drive Sonar: median 10.7 s (range 6.9&ndash;25.5)">
+            <span class="text-sm font-semibold text-slate-900 dark:text-white">Drive Sonar</span>
+            <div class="relative h-6 rounded bg-slate-100 dark:bg-slate-800/70">
+              <div class="bench-bar absolute inset-y-0 left-0 rounded-r bg-blue-500" style="--w:33.4%"></div>
+              <div class="bench-range absolute top-1/2 -translate-y-1/2 h-3 border-x-2 border-slate-900 dark:border-white" style="left:21.6%;width:58.1%">
+                <div class="absolute top-1/2 inset-x-0 h-0.5 -translate-y-1/2 bg-slate-900 dark:bg-white"></div>
+              </div>
+            </div>
+            <span class="text-right font-mono text-sm text-slate-900 dark:text-slate-100 leading-tight">10.7 <span class="text-xs text-slate-500 dark:text-slate-400">s</span><span class="block text-xs text-slate-500 dark:text-slate-400">6.9&ndash;25.5</span></span>
+          </div>
+          <div class="grid grid-cols-[6.5rem_1fr_5rem] items-center gap-3 py-2" title="WinDirStat: median 23.4 s (range 22.5&ndash;30.2)">
+            <span class="text-sm text-slate-600 dark:text-slate-300">WinDirStat</span>
+            <div class="relative h-6 rounded bg-slate-100 dark:bg-slate-800/70">
+              <div class="bench-bar absolute inset-y-0 left-0 rounded-r bg-slate-400 dark:bg-slate-500" style="--w:73.1%"></div>
+              <div class="bench-range absolute top-1/2 -translate-y-1/2 h-3 border-x-2 border-slate-900 dark:border-white" style="left:70.3%;width:24.1%">
+                <div class="absolute top-1/2 inset-x-0 h-0.5 -translate-y-1/2 bg-slate-900 dark:bg-white"></div>
+              </div>
+            </div>
+            <span class="text-right font-mono text-sm text-slate-900 dark:text-slate-100 leading-tight">23.4 <span class="text-xs text-slate-500 dark:text-slate-400">s</span><span class="block text-xs text-slate-500 dark:text-slate-400">22.5&ndash;30.2</span></span>
+          </div>
+          <div class="grid grid-cols-[6.5rem_1fr_5rem] items-center gap-3 py-2" title="WizTree: median 13.7 s (range 8.9&ndash;29.4)">
+            <span class="text-sm text-slate-600 dark:text-slate-300">WizTree</span>
+            <div class="relative h-6 rounded bg-slate-100 dark:bg-slate-800/70">
+              <div class="bench-bar absolute inset-y-0 left-0 rounded-r bg-slate-400 dark:bg-slate-500" style="--w:42.8%"></div>
+              <div class="bench-range absolute top-1/2 -translate-y-1/2 h-3 border-x-2 border-slate-900 dark:border-white" style="left:27.8%;width:64.1%">
+                <div class="absolute top-1/2 inset-x-0 h-0.5 -translate-y-1/2 bg-slate-900 dark:bg-white"></div>
+              </div>
+            </div>
+            <span class="text-right font-mono text-sm text-slate-900 dark:text-slate-100 leading-tight">13.7 <span class="text-xs text-slate-500 dark:text-slate-400">s</span><span class="block text-xs text-slate-500 dark:text-slate-400">8.9&ndash;29.4</span></span>
+          </div>
+        </div>
+        <div class="bench-chart" data-chart="warm">
+          <h3 class="text-lg font-semibold text-slate-900 dark:text-white">Re-scan <span class="text-sm font-normal text-slate-500 dark:text-slate-400">(warm scan) &middot; seconds, lower is better</span></h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 mb-4">Scanning the same folder again in the same session. WizTree run in admin mode.</p>
+          <div class="grid grid-cols-[6.5rem_1fr_5rem] items-center gap-3 py-2" title="Drive Sonar: median 4.7 s (range 4.4&ndash;5.3)">
+            <span class="text-sm font-semibold text-slate-900 dark:text-white">Drive Sonar</span>
+            <div class="relative h-6 rounded bg-slate-100 dark:bg-slate-800/70">
+              <div class="bench-bar absolute inset-y-0 left-0 rounded-r bg-blue-500" style="--w:14.7%"></div>
+              <div class="bench-range absolute top-1/2 -translate-y-1/2 h-3 border-x-2 border-slate-900 dark:border-white" style="left:13.8%;width:2.8%">
+                <div class="absolute top-1/2 inset-x-0 h-0.5 -translate-y-1/2 bg-slate-900 dark:bg-white"></div>
+              </div>
+            </div>
+            <span class="text-right font-mono text-sm text-slate-900 dark:text-slate-100 leading-tight">4.7 <span class="text-xs text-slate-500 dark:text-slate-400">s</span><span class="block text-xs text-slate-500 dark:text-slate-400">4.4&ndash;5.3</span></span>
+          </div>
+          <div class="grid grid-cols-[6.5rem_1fr_5rem] items-center gap-3 py-2" title="WinDirStat: median 9.4 s (range 6.4&ndash;10.3)">
+            <span class="text-sm text-slate-600 dark:text-slate-300">WinDirStat</span>
+            <div class="relative h-6 rounded bg-slate-100 dark:bg-slate-800/70">
+              <div class="bench-bar absolute inset-y-0 left-0 rounded-r bg-slate-400 dark:bg-slate-500" style="--w:29.4%"></div>
+              <div class="bench-range absolute top-1/2 -translate-y-1/2 h-3 border-x-2 border-slate-900 dark:border-white" style="left:20.0%;width:12.2%">
+                <div class="absolute top-1/2 inset-x-0 h-0.5 -translate-y-1/2 bg-slate-900 dark:bg-white"></div>
+              </div>
+            </div>
+            <span class="text-right font-mono text-sm text-slate-900 dark:text-slate-100 leading-tight">9.4 <span class="text-xs text-slate-500 dark:text-slate-400">s</span><span class="block text-xs text-slate-500 dark:text-slate-400">6.4&ndash;10.3</span></span>
+          </div>
+          <div class="grid grid-cols-[6.5rem_1fr_5rem] items-center gap-3 py-2" title="WizTree: median 8.1 s (range 7.3&ndash;9.6)">
+            <span class="text-sm text-slate-600 dark:text-slate-300">WizTree</span>
+            <div class="relative h-6 rounded bg-slate-100 dark:bg-slate-800/70">
+              <div class="bench-bar absolute inset-y-0 left-0 rounded-r bg-slate-400 dark:bg-slate-500" style="--w:25.3%"></div>
+              <div class="bench-range absolute top-1/2 -translate-y-1/2 h-3 border-x-2 border-slate-900 dark:border-white" style="left:22.8%;width:7.2%">
+                <div class="absolute top-1/2 inset-x-0 h-0.5 -translate-y-1/2 bg-slate-900 dark:bg-white"></div>
+              </div>
+            </div>
+            <span class="text-right font-mono text-sm text-slate-900 dark:text-slate-100 leading-tight">8.1 <span class="text-xs text-slate-500 dark:text-slate-400">s</span><span class="block text-xs text-slate-500 dark:text-slate-400">7.3&ndash;9.6</span></span>
+          </div>
+        </div>
+      </div>
+      <p class="text-xs text-slate-500 dark:text-slate-400 mb-8">Bars show the median; whiskers and the small figure under each value show the range.</p>
+
+      <details id="bench-details" class="group rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50">
+        <summary class="flex items-center justify-between gap-4 cursor-pointer list-none p-4 font-medium text-slate-900 dark:text-white [&::-webkit-details-marker]:hidden">
+          <span>Full comparison table and notes</span>
+          <svg class="w-5 h-5 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+        </summary>
+        <div class="p-4 pt-0">
       <!-- Key Findings / Supported Claims -->
       <div class="overflow-x-auto mb-4">
         <table class="w-full text-left text-sm border-collapse bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 divide-y divide-slate-200 dark:divide-slate-800">
@@ -683,9 +820,10 @@
             <!-- User Mode -->
             <tr class="divide-x divide-slate-200 dark:divide-slate-800">
               <td class="p-4 font-medium">Runs in user mode (no admin)</td>
-              <td class="p-4 font-bold bg-blue-50 dark:bg-blue-950/70 border-x border-blue-100 dark:border-blue-900/50 text-right text-emerald-600 dark:text-emerald-400">✅</td>
-              <td class="p-4 text-emerald-600 dark:text-emerald-400 font-bold text-right">✅</td>
-              <td class="p-4 text-rose-500 font-bold text-right">❌<sup><a href="#fn1" id="ref1" class="text-blue-500 underline font-normal scroll-mt-24">[1]</a></sup></td>
+              <td class="p-4 font-bold bg-blue-50 dark:bg-blue-950/70 border-x border-blue-100 dark:border-blue-900/50 text-right text-emerald-600 dark:text-emerald-400"><svg class="w-5 h-5 inline-block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg><span class="sr-only">Yes</span></td>
+              <td class="p-4 text-emerald-600 dark:text-emerald-400 font-bold text-right"><svg class="w-5 h-5 inline-block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg><span class="sr-only">Yes</span></td>
+              <td class="p-4 text-rose-500 font-bold text-right"><svg class="w-5 h-5 inline-block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18" />
+  <path d="m6 6 12 12" /></svg><span class="sr-only">No</span><sup><a href="#fn1" id="ref1" class="text-blue-500 underline font-normal scroll-mt-24">[1]</a></sup></td>
             </tr>
 
             <!-- Installed Size -->
@@ -712,7 +850,7 @@
 
             <!-- Memory Sub-row: Scan Engine -->
             <tr class="divide-x divide-slate-200 dark:divide-slate-800 bg-slate-50/50 dark:bg-slate-950/30">
-              <td class="p-4 pl-7 text-xs sm:text-sm font-normal text-slate-600 dark:text-slate-400">↳ of which scan engine [MB]</td>
+              <td class="p-4 pl-7 text-xs sm:text-sm font-normal text-slate-600 dark:text-slate-400">of which scan engine [MB]</td>
               <td class="p-4 text-right font-mono bg-blue-50 dark:bg-blue-950/70 border-x border-blue-100 dark:border-blue-900/50">
                 121.6 <span class="text-xs font-normal text-blue-700 dark:text-blue-300 block sm:inline">(118.9–123.4)</span>
               </td>
@@ -779,23 +917,25 @@
           <a href="#ref5" class="text-blue-500 font-semibold">[5]</a> <strong>Platform support:</strong> Drive Sonar runs natively on Windows, Linux, and macOS. WinDirStat and WizTree support Windows only. Disk scanning speed is optimized for Windows.
         </p>
       </div>
+        </div>
+      </details>
     </section>
 
     <!-- FAQ Section -->
     <section id="faq" class="py-20 px-6 max-w-4xl mx-auto border-t border-slate-200 dark:border-slate-900">
-      <h2 class="text-3xl font-bold tracking-tight text-center text-slate-900 dark:text-white mb-12">Frequently Asked Questions</h2>
-      <div class="space-y-6">
-        <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 rounded-xl">
-          <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">Is Drive Sonar open-source and free?</h3>
-          <p class="text-slate-600 dark:text-slate-400">Yes, Drive Sonar is 100% free and open-source under the permissive Apache 2.0 License. You can view, audit, or fork the source code on GitHub.</p>
+      <h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white mb-8">Frequently asked questions</h2>
+      <div>
+        <div class="py-6 border-t border-slate-200 dark:border-slate-800">
+          <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">Is Drive Sonar open source and free?</h3>
+          <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Yes. It is free and open source under the Apache 2.0 license. You can read, audit or fork the code on GitHub.</p>
         </div>
-        <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 rounded-xl">
-          <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">Why does Drive Sonar excel at warm scans?</h3>
-          <p class="text-slate-600 dark:text-slate-400">Drive Sonar is built in Rust with multithreaded directory traversal. When re-scanning directories already cached in system RAM by your OS, Drive Sonar processes tree aggregates and UI state with low memory usage.</p>
+        <div class="py-6 border-t border-slate-200 dark:border-slate-800">
+          <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">How fast are repeat scans?</h3>
+          <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Drive Sonar uses multithreaded directory traversal written in Rust. When your OS already has the directory metadata cached in RAM, a re-scan of 1.2M+ files takes a median of 4.7 s here, against 8.1 s for WizTree and 9.4 s for WinDirStat. Details are in the benchmark table.</p>
         </div>
-        <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 rounded-xl">
-          <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">How does Age Scatter Analysis help clean up space?</h3>
-          <p class="text-slate-600 dark:text-slate-400">Standard treemaps only highlight file size. Scatter plots place file size on the Y-axis and file age on the X-axis, allowing you to instantly isolate massive files that haven't been modified in years.</p>
+        <div class="py-6 border-t border-slate-200 dark:border-slate-800">
+          <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">How does the size-vs-age plot help free up space?</h3>
+          <p class="text-slate-600 dark:text-slate-400 leading-relaxed">A treemap only shows size, so an active 50 GB folder looks the same as a forgotten one. The plot puts file size on one axis and time since last modification on the other, so large files nobody has touched in years stand out.</p>
         </div>
       </div>
     </section>
@@ -809,15 +949,15 @@
         </p>
         <div class="flex flex-wrap items-center justify-center gap-3 mb-6">
           <a href="https://github.com/barun-saha/drive-sonar/releases/download/v0.10.0/Drive.Sonar_0.10.0_x64-setup.exe" class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-semibold px-6 py-3 rounded-xl shadow-lg shadow-blue-600/25 hover:-translate-y-0.5 active:translate-y-0 transition-all text-sm sm:text-base">
-            <span>🪟 Windows (.exe)</span>
+            <span class="inline-flex items-center gap-2"><svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.4 10.4 4.4v6.8H3zM11.4 4.25 21 3v8.2h-9.6zM3 12.2h7.4v6.8L3 18zM11.4 12.2H21V21l-9.6-1.3z"/></svg>Windows (.exe)</span>
           </a>
 
           <a href="https://github.com/barun-saha/drive-sonar/releases/download/v0.10.0/Drive.Sonar_0.10.0_aarch64.dmg" class="inline-flex items-center gap-2 bg-slate-900 dark:bg-slate-800 hover:bg-slate-800 dark:hover:bg-slate-700 text-white font-semibold px-6 py-3 rounded-xl border border-slate-700 hover:-translate-y-0.5 active:translate-y-0 transition-all text-sm sm:text-base">
-            <span>🍏 macOS (.dmg)</span>
+            <span class="inline-flex items-center gap-2"><svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>macOS (.dmg)</span>
           </a>
 
           <a href="https://github.com/barun-saha/drive-sonar/releases/download/v0.10.0/Drive.Sonar_0.10.0_amd64.deb" class="inline-flex items-center gap-2 bg-slate-900 dark:bg-slate-800 hover:bg-slate-800 dark:hover:bg-slate-700 text-white font-semibold px-6 py-3 rounded-xl border border-slate-700 hover:-translate-y-0.5 active:translate-y-0 transition-all text-sm sm:text-base">
-            <span>🐧 Linux (.deb)</span>
+            <span class="inline-flex items-center gap-2"><svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.504 0c-.155 0-.315.008-.48.021-4.226.333-3.105 4.807-3.17 6.298-.076 1.092-.3 1.953-1.05 3.02-.885 1.051-2.127 2.75-2.716 4.521-.278.832-.41 1.684-.287 2.489a.424.424 0 00-.11.135c-.26.268-.45.6-.663.839-.199.199-.485.267-.797.4-.313.136-.658.269-.864.68-.09.189-.136.394-.132.602 0 .199.027.4.055.536.058.399.116.728.04.97-.249.68-.28 1.145-.106 1.484.174.334.535.47.94.601.81.2 1.91.135 2.774.6.926.466 1.866.67 2.616.47.526-.116.97-.464 1.208-.946.587-.003 1.23-.269 2.26-.334.699-.058 1.574.267 2.577.2.025.134.063.198.114.333l.003.003c.391.778 1.113 1.132 1.884 1.071.771-.06 1.592-.536 2.257-1.306.631-.765 1.683-1.084 2.378-1.503.348-.199.629-.469.649-.853.023-.4-.2-.811-.714-1.376v-.097l-.003-.003c-.17-.2-.25-.535-.338-.926-.085-.401-.182-.786-.492-1.046h-.003c-.059-.054-.123-.067-.188-.135a.357.357 0 00-.19-.064c.431-1.278.264-2.55-.173-3.694-.533-1.41-1.465-2.638-2.175-3.483-.796-1.005-1.576-1.957-1.56-3.368.026-2.152.236-6.133-3.544-6.139zm.529 3.405h.013c.213 0 .396.062.584.198.19.135.33.332.438.533.105.259.158.459.166.724 0-.02.006-.04.006-.06v.105a.086.086 0 01-.004-.021l-.004-.024a1.807 1.807 0 01-.15.706.953.953 0 01-.213.335.71.71 0 00-.088-.042c-.104-.045-.198-.064-.284-.133a1.312 1.312 0 00-.22-.066c.05-.06.146-.133.183-.198.053-.128.082-.264.088-.402v-.02a1.21 1.21 0 00-.061-.4c-.045-.134-.101-.2-.183-.333-.084-.066-.167-.132-.267-.132h-.016c-.093 0-.176.03-.262.132a.8.8 0 00-.205.334 1.18 1.18 0 00-.09.4v.019c.002.089.008.179.02.267-.193-.067-.438-.135-.607-.202a1.635 1.635 0 01-.018-.2v-.02a1.772 1.772 0 01.15-.768c.082-.22.232-.406.43-.533a.985.985 0 01.594-.2zm-2.962.059h.036c.142 0 .27.048.399.135.146.129.264.288.344.465.09.199.14.4.153.667v.004c.007.134.006.2-.002.266v.08c-.03.007-.056.018-.083.024-.152.055-.274.135-.393.2.012-.09.013-.18.003-.267v-.015c-.012-.133-.04-.2-.082-.333a.613.613 0 00-.166-.267.248.248 0 00-.183-.064h-.021c-.071.006-.13.04-.186.132a.552.552 0 00-.12.27.944.944 0 00-.023.33v.015c.012.135.037.2.08.334.046.134.098.2.166.268.01.009.02.018.034.024-.07.057-.117.07-.176.136a.304.304 0 01-.131.068 2.62 2.62 0 01-.275-.402 1.772 1.772 0 01-.155-.667 1.759 1.759 0 01.08-.668 1.43 1.43 0 01.283-.535c.128-.133.26-.2.418-.2zm1.37 1.706c.332 0 .733.065 1.216.399.293.2.523.269 1.052.468h.003c.255.136.405.266.478.399v-.131a.571.571 0 01.016.47c-.123.31-.516.643-1.063.842v.002c-.268.135-.501.333-.775.465-.276.135-.588.292-1.012.267a1.139 1.139 0 01-.448-.067 3.566 3.566 0 01-.322-.198c-.195-.135-.363-.332-.612-.465v-.005h-.005c-.4-.246-.616-.512-.686-.71-.07-.268-.005-.47.193-.6.224-.135.38-.271.483-.336.104-.074.143-.102.176-.131h.002v-.003c.169-.202.436-.47.839-.601.139-.036.294-.065.466-.065zm2.8 2.142c.358 1.417 1.196 3.475 1.735 4.473.286.534.855 1.659 1.102 3.024.156-.005.33.018.513.064.646-1.671-.546-3.467-1.089-3.966-.22-.2-.232-.335-.123-.335.59.534 1.365 1.572 1.646 2.757.13.535.16 1.104.021 1.67.067.028.135.06.205.067 1.032.534 1.413.938 1.23 1.537v-.043c-.06-.003-.12 0-.18 0h-.016c.151-.467-.182-.825-1.065-1.224-.915-.4-1.646-.336-1.77.465-.008.043-.013.066-.018.135-.068.023-.139.053-.209.064-.43.268-.662.669-.793 1.187-.13.533-.17 1.156-.205 1.869v.003c-.02.334-.17.838-.319 1.35-1.5 1.072-3.58 1.538-5.348.334a2.645 2.645 0 00-.402-.533 1.45 1.45 0 00-.275-.333c.182 0 .338-.03.465-.067a.615.615 0 00.314-.334c.108-.267 0-.697-.345-1.163-.345-.467-.931-.995-1.788-1.521-.63-.4-.986-.87-1.15-1.396-.165-.534-.143-1.085-.015-1.645.245-1.07.873-2.11 1.274-2.763.107-.065.037.135-.408.974-.396.751-1.14 2.497-.122 3.854a8.123 8.123 0 01.647-2.876c.564-1.278 1.743-3.504 1.836-5.268.048.036.217.135.289.202.218.133.38.333.59.465.21.201.477.335.876.335.039.003.075.006.11.006.412 0 .73-.134.997-.268.29-.134.52-.334.74-.4h.005c.467-.135.835-.402 1.044-.7zm2.185 8.958c.037.6.343 1.245.882 1.377.588.134 1.434-.333 1.791-.765l.211-.01c.315-.007.577.01.847.268l.003.003c.208.199.305.53.391.876.085.4.154.78.409 1.066.486.527.645.906.636 1.14l.003-.007v.018l-.003-.012c-.015.262-.185.396-.498.595-.63.401-1.746.712-2.457 1.57-.618.737-1.37 1.14-2.036 1.191-.664.053-1.237-.2-1.574-.898l-.005-.003c-.21-.4-.12-1.025.056-1.69.176-.668.428-1.344.463-1.897.037-.714.076-1.335.195-1.814.12-.465.308-.797.641-.984l.045-.022zm-10.814.049h.01c.053 0 .105.005.157.014.376.055.706.333 1.023.752l.91 1.664.003.003c.243.533.754 1.064 1.189 1.637.434.598.77 1.131.729 1.57v.006c-.057.744-.48 1.148-1.125 1.294-.645.135-1.52.002-2.395-.464-.968-.536-2.118-.469-2.857-.602-.369-.066-.61-.2-.723-.4-.11-.2-.113-.602.123-1.23v-.004l.002-.003c.117-.334.03-.752-.027-1.118-.055-.401-.083-.71.043-.94.16-.334.396-.4.69-.533.294-.135.64-.202.915-.47h.002v-.002c.256-.268.445-.601.668-.838.19-.201.38-.336.663-.336zm7.159-9.074c-.435.201-.945.535-1.488.535-.542 0-.97-.267-1.28-.466-.154-.134-.28-.268-.373-.335-.164-.134-.144-.333-.074-.333.109.016.129.134.199.2.096.066.215.2.36.333.292.2.68.467 1.167.467.485 0 1.053-.267 1.398-.466.195-.135.445-.334.648-.467.156-.136.149-.267.279-.267.128.016.034.134-.147.332a8.097 8.097 0 01-.69.468zm-1.082-1.583V5.64c-.006-.02.013-.042.029-.05.074-.043.18-.027.26.004.063 0 .16.067.15.135-.006.049-.085.066-.135.066-.055 0-.092-.043-.141-.068-.052-.018-.146-.008-.163-.065zm-.551 0c-.02.058-.113.049-.166.066-.047.025-.086.068-.14.068-.05 0-.13-.02-.136-.068-.01-.066.088-.133.15-.133.08-.031.184-.047.259-.005.019.009.036.03.03.05v.02h.003z"/></svg>Linux (.deb)</span>
           </a>
 
           <a href="https://snapcraft.io/drivesonar" target="_blank" rel="noopener" class="flex justify-center transition-all hover:-translate-y-0.5 active:translate-y-0">
@@ -882,6 +1022,80 @@
 
     themeBtn.addEventListener('click', toggleTheme);
     themeBtnMobile.addEventListener('click', toggleTheme);
+  </script>
+  <script>
+    // Media carousel (video + screenshots)
+    (function () {
+      const root = document.getElementById('carousel');
+      if (!root) return;
+      const track = document.getElementById('carousel-track');
+      const slides = Array.from(root.querySelectorAll('.carousel-slide'));
+      const dots = Array.from(root.querySelectorAll('.carousel-dot'));
+      const video = root.querySelector('iframe');
+      let index = 0;
+
+      function pauseVideo() {
+        try {
+          video.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'pauseVideo', args: [] }), '*');
+        } catch (e) { /* ignore */ }
+      }
+
+      function go(n) {
+        if (n !== index) pauseVideo();
+        index = (n + slides.length) % slides.length;
+        track.style.transform = 'translateX(-' + (index * 100) + '%)';
+        slides.forEach((s, k) => {
+          s.toggleAttribute('inert', k !== index);
+          s.setAttribute('aria-hidden', k !== index ? 'true' : 'false');
+        });
+        dots.forEach((d, k) => {
+          d.setAttribute('aria-selected', k === index ? 'true' : 'false');
+          d.className = 'carousel-dot w-2.5 h-2.5 rounded-full transition-colors ' +
+            (k === index ? 'bg-blue-500' : 'bg-slate-300 dark:bg-slate-700 hover:bg-slate-400 dark:hover:bg-slate-600');
+        });
+      }
+
+      document.getElementById('carousel-prev').addEventListener('click', () => go(index - 1));
+      document.getElementById('carousel-next').addEventListener('click', () => go(index + 1));
+      dots.forEach(d => d.addEventListener('click', () => go(Number(d.dataset.slide))));
+      root.addEventListener('keydown', e => {
+        if (e.key === 'ArrowLeft') go(index - 1);
+        if (e.key === 'ArrowRight') go(index + 1);
+      });
+      go(0);
+    })();
+
+    // Animate benchmark charts when scrolled into view
+    (function () {
+      const charts = document.querySelectorAll('.bench-chart');
+      if (!('IntersectionObserver' in window)) {
+        charts.forEach(c => c.classList.add('in-view'));
+        return;
+      }
+      const io = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+      charts.forEach(c => io.observe(c));
+    })();
+
+    // Open the collapsed benchmark details when linking to a footnote
+    (function () {
+      const details = document.getElementById('bench-details');
+      function openForHash() {
+        if (details && /^#(fn|ref)\d/.test(location.hash)) {
+          details.open = true;
+          const el = document.querySelector(location.hash);
+          if (el) el.scrollIntoView();
+        }
+      }
+      window.addEventListener('hashchange', openForHash);
+      openForHash();
+    })();
   </script>
 </body>
 </html>
