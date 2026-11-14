@@ -411,7 +411,7 @@
 
         <!-- Subtitle -->
         <p class="animate-fade-in-up [animation-delay:400ms] text-lg sm:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed mb-10 font-normal">
-          A lightweight, cross-platform approach to disk usage analytics. Scan millions of items quickly <em>without</em> administrator rights — with minimal memory overhead and multidimensional age analysis.
+          Cold scan of 1.2M+ files: <strong class="font-semibold text-slate-900 dark:text-white">10.7 s</strong> without admin rights, against 13.7 s for WizTree in admin mode and 23.4 s for WinDirStat. Plus size-vs-age plots, on Windows, macOS and Linux.
         </p>
 
         <!-- Call to Actions -->
@@ -653,60 +653,35 @@
       </div>
     </section>
 
-    <!-- Core Features Grid -->
-    <section id="features" class="py-20 px-6 max-w-6xl mx-auto border-t border-slate-200 dark:border-slate-900">
-      <div class="text-center max-w-2xl mx-auto mb-16">
-        <h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white mb-4">Engineered for efficiency and privacy</h2>
-        <p class="text-slate-600 dark:text-slate-400 text-base">Replaces slow legacy analyzers with a zero-telemetry, lightweight native architecture.</p>
-      </div>
+    <!-- Features -->
+    <section id="features" class="py-20 px-6 max-w-4xl mx-auto border-t border-slate-200 dark:border-slate-900">
+      <h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white mb-3">What it does</h2>
+      <p class="text-slate-600 dark:text-slate-400 text-lg mb-10">Open source, with no telemetry in the app.</p>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 p-8 rounded-2xl">
-          <div class="w-12 h-12 bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800/50 rounded-xl flex items-center justify-center text-blue-600 dark:text-blue-400 mb-6"><svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="7.5" cy="7.5" r=".5" fill="currentColor" />
-  <circle cx="18.5" cy="5.5" r=".5" fill="currentColor" />
-  <circle cx="11.5" cy="11.5" r=".5" fill="currentColor" />
-  <circle cx="7.5" cy="16.5" r=".5" fill="currentColor" />
-  <circle cx="17.5" cy="14.5" r=".5" fill="currentColor" />
-  <path d="M3 3v16a2 2 0 0 0 2 2h16" /></svg></div>
-          <h3 class="text-xl font-semibold text-slate-900 dark:text-white mb-3">Multidimensional Plots</h3>
-          <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Go <em>beyond</em> treemap&mdash;cross-reference file sizes vs. age to isolate forgotten archives instantly.</p>
+      <div>
+        <div class="grid md:grid-cols-[16rem_1fr] gap-x-10 gap-y-2 py-8 border-t border-slate-200 dark:border-slate-800">
+          <h3 class="text-xl font-semibold text-slate-900 dark:text-white">Size vs. age plots</h3>
+          <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">Go beyond the treemap. Cross-reference file size with age to isolate forgotten archives.</p>
         </div>
-
-        <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out delay-150 bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 p-8 rounded-2xl">
-          <div class="w-12 h-12 bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800/50 rounded-xl flex items-center justify-center text-blue-600 dark:text-blue-400 mb-6"><svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2" /></svg></div>
-          <h3 class="text-xl font-semibold text-slate-900 dark:text-white mb-3">Interactive Exploration</h3>
-          <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Browse items in your OS file manager, or safely move clutter to the Trash with confirmation protection and other <em>safety</em> checks.</p>
+        <div class="grid md:grid-cols-[16rem_1fr] gap-x-10 gap-y-2 py-8 border-t border-slate-200 dark:border-slate-800">
+          <h3 class="text-xl font-semibold text-slate-900 dark:text-white">No admin rights</h3>
+          <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">Runs fast without elevation, with read-only access to the file system.</p>
         </div>
-
-        <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out delay-300 bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 p-8 rounded-2xl">
-          <div class="w-12 h-12 bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800/50 rounded-xl flex items-center justify-center text-blue-600 dark:text-blue-400 mb-6"><svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" />
-  <path d="M14 2v5a1 1 0 0 0 1 1h5" />
-  <path d="M10 9H8" />
-  <path d="M16 13H8" />
-  <path d="M16 17H8" /></svg></div>
-          <h3 class="text-xl font-semibold text-slate-900 dark:text-white mb-3">Detailed Reports</h3>
-          <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Export point-in-time storage breakdowns to text files for easy space <em>auditing</em> and tracking growth.</p>
+        <div class="grid md:grid-cols-[16rem_1fr] gap-x-10 gap-y-2 py-8 border-t border-slate-200 dark:border-slate-800">
+          <h3 class="text-xl font-semibold text-slate-900 dark:text-white">Windows, macOS, Linux</h3>
+          <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">Optimized for Windows, and runs natively on macOS and Linux, on x86_64 and ARM64.</p>
         </div>
-
-        <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 p-8 rounded-2xl">
-          <div class="w-12 h-12 bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800/50 rounded-xl flex items-center justify-center text-blue-600 dark:text-blue-400 mb-6"><svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
-  <path d="m9 12 2 2 4-4" /></svg></div>
-          <h3 class="text-xl font-semibold text-slate-900 dark:text-white mb-3">User-Mode Execution</h3>
-          <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Runs fast without administrator elevation, ensuring <em>safe</em>, read-only file system access.</p>
+        <div class="grid md:grid-cols-[16rem_1fr] gap-x-10 gap-y-2 py-8 border-t border-slate-200 dark:border-slate-800">
+          <h3 class="text-xl font-semibold text-slate-900 dark:text-white">Careful cleanup</h3>
+          <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">Open items in your file manager, or move clutter to the Trash behind confirmation prompts and safety checks.</p>
         </div>
-
-        <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out delay-150 bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 p-8 rounded-2xl">
-          <div class="w-12 h-12 bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800/50 rounded-xl flex items-center justify-center text-blue-600 dark:text-blue-400 mb-6"><svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 5a2 2 0 0 1 2 2v8.526a2 2 0 0 0 .212.897l1.068 2.127a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45l1.068-2.127A2 2 0 0 0 4 15.526V7a2 2 0 0 1 2-2z" />
-  <path d="M20.054 15.987H3.946" /></svg></div>
-          <h3 class="text-xl font-semibold text-slate-900 dark:text-white mb-3">Cross-Platform Support</h3>
-          <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Optimized for Windows but also runs <em>natively</em> on macOS and Linux and supports different architectures.</p>
+        <div class="grid md:grid-cols-[16rem_1fr] gap-x-10 gap-y-2 py-8 border-t border-slate-200 dark:border-slate-800">
+          <h3 class="text-xl font-semibold text-slate-900 dark:text-white">Reports</h3>
+          <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">Export point-in-time storage breakdowns to text files, to audit space and track growth.</p>
         </div>
-
-        <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out delay-300 bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 p-8 rounded-2xl">
-          <div class="w-12 h-12 bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800/50 rounded-xl flex items-center justify-center text-blue-600 dark:text-blue-400 mb-6"><svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 14 4-4" />
-  <path d="M3.34 19a10 10 0 1 1 17.32 0" /></svg></div>
-          <h3 class="text-xl font-semibold text-slate-900 dark:text-white mb-3">Minimal Overhead</h3>
-          <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Built with Rust's speed and memory <em>optimizations</em>, using ~300 MB RAM when processing over 1.26M files.</p>
+        <div class="grid md:grid-cols-[16rem_1fr] gap-x-10 gap-y-2 py-8 border-t border-slate-200 dark:border-slate-800">
+          <h3 class="text-xl font-semibold text-slate-900 dark:text-white">Modest memory</h3>
+          <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">Written in Rust. About 300 MB of RAM for 1.2M+ files, including the interface.</p>
         </div>
       </div>
     </section>
@@ -934,19 +909,19 @@
 
     <!-- FAQ Section -->
     <section id="faq" class="py-20 px-6 max-w-4xl mx-auto border-t border-slate-200 dark:border-slate-900">
-      <h2 class="text-3xl font-bold tracking-tight text-center text-slate-900 dark:text-white mb-12">Frequently Asked Questions</h2>
-      <div class="space-y-6">
-        <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 rounded-xl">
-          <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">Is Drive Sonar open-source and free?</h3>
-          <p class="text-slate-600 dark:text-slate-400">Yes, Drive Sonar is 100% free and open-source under the permissive Apache 2.0 License. You can view, audit, or fork the source code on GitHub.</p>
+      <h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white mb-8">Frequently asked questions</h2>
+      <div>
+        <div class="py-6 border-t border-slate-200 dark:border-slate-800">
+          <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">Is Drive Sonar open source and free?</h3>
+          <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Yes. It is free and open source under the Apache 2.0 license. You can read, audit or fork the code on GitHub.</p>
         </div>
-        <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 rounded-xl">
-          <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">Why does Drive Sonar excel at warm scans?</h3>
-          <p class="text-slate-600 dark:text-slate-400">Drive Sonar is built in Rust with multithreaded directory traversal. When re-scanning directories already cached in system RAM by your OS, Drive Sonar processes tree aggregates and UI state with low memory usage.</p>
+        <div class="py-6 border-t border-slate-200 dark:border-slate-800">
+          <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">How fast are repeat scans?</h3>
+          <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Drive Sonar uses multithreaded directory traversal written in Rust. When your OS already has the directory metadata cached in RAM, a re-scan of 1.2M+ files takes a median of 4.7 s here, against 8.1 s for WizTree and 9.4 s for WinDirStat. Details are in the benchmark table.</p>
         </div>
-        <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 rounded-xl">
-          <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">How does Age Scatter Analysis help clean up space?</h3>
-          <p class="text-slate-600 dark:text-slate-400">Standard treemaps only highlight file size. Scatter plots place file size on the Y-axis and file age on the X-axis, allowing you to instantly isolate massive files that haven't been modified in years.</p>
+        <div class="py-6 border-t border-slate-200 dark:border-slate-800">
+          <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">How does the size-vs-age plot help free up space?</h3>
+          <p class="text-slate-600 dark:text-slate-400 leading-relaxed">A treemap only shows size, so an active 50 GB folder looks the same as a forgotten one. The plot puts file size on one axis and time since last modification on the other, so large files nobody has touched in years stand out.</p>
         </div>
       </div>
     </section>
